@@ -61,6 +61,19 @@ class _LoginPage1State extends State<LoginPage1> {
                   ),
                 ),
                 Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Container(
+                    alignment: Alignment.topRight,
+                    child: TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Forgot your password?',
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
                   padding: EdgeInsets.all(20),
                   child: ElevatedButton(
                       onPressed: () {

@@ -33,7 +33,7 @@ class _SigninPage1State extends State<SigninPage1> {
                   child: TextFormField(
                     decoration: InputDecoration(
                       labelText: "Name",
-                      prefixIcon: Icon(Icons.mail),
+                      prefixIcon: Icon(Icons.person),
                       border: OutlineInputBorder(),
                     ),
                     validator: (value) {
@@ -49,7 +49,7 @@ class _SigninPage1State extends State<SigninPage1> {
                   child: TextFormField(
                     decoration: InputDecoration(
                       labelText: "E-mail",
-                      prefixIcon: Icon(Icons.lock),
+                      prefixIcon: Icon(Icons.mail),
                       border: OutlineInputBorder(),
                     ),
                     validator: (value) {

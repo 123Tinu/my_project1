@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
-class LoginPage1 extends StatefulWidget {
-  const LoginPage1({super.key});
+class SigninPage1 extends StatefulWidget {
+  const SigninPage1({super.key});
 
   @override
-  State<LoginPage1> createState() => _LoginPage1State();
+  State<SigninPage1> createState() => _SigninPage1State();
 }
 
-class _LoginPage1State extends State<LoginPage1> {
-  final loginkey1 = GlobalKey<FormState>();
+class _SigninPage1State extends State<SigninPage1> {
+  final loginkey2 = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         body: Form(
-          key: loginkey1,
+          key: loginkey2,
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -32,8 +32,24 @@ class _LoginPage1State extends State<LoginPage1> {
                   padding: const EdgeInsets.all(20.0),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      labelText: "E-mail",
+                      labelText: "Name",
                       prefixIcon: Icon(Icons.mail),
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Please Enter Your Name";
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      labelText: "E-mail",
+                      prefixIcon: Icon(Icons.lock),
                       border: OutlineInputBorder(),
                     ),
                     validator: (value) {
@@ -54,7 +70,7 @@ class _LoginPage1State extends State<LoginPage1> {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "Please Enter Your E-mail Id";
+                        return "Please Enter a Password";
                       }
                       return null;
                     },
@@ -64,7 +80,7 @@ class _LoginPage1State extends State<LoginPage1> {
                   padding: EdgeInsets.all(20),
                   child: ElevatedButton(
                       onPressed: () {
-                        if (loginkey1.currentState!.validate()) {
+                        if (loginkey2.currentState!.validate()) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text("Fetchingj Data")),
                           );

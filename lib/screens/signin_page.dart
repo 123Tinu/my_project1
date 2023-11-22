@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_project/screens/forgot_password_page.dart';
+import 'package:my_project/screens/signup_page.dart';
 
 class Signin_Page extends StatefulWidget {
   const Signin_Page({super.key});
@@ -11,6 +13,8 @@ class _LoginPage1State extends State<Signin_Page> {
   final loginkey = GlobalKey<FormState>();
   var emailController = TextEditingController();
   var passController = TextEditingController();
+  bool passwordVisible = false;
+  var passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +37,12 @@ class _LoginPage1State extends State<Signin_Page> {
                         width: 300,
                         child: Stack(
                           children: [
-                            Center(
-                              child: Image(
-                                  image: AssetImage(
-                                'assets/images1/nikeshoelogo3.png',
-                              )),
-                            )
+                            // Center(
+                            //   child: Image(
+                            //       image: AssetImage(
+                            //     'assets/images1/nikeshoelogo3.png',
+                            //   )),
+                            // )
                           ],
                         ),
                       ),
@@ -53,7 +57,7 @@ class _LoginPage1State extends State<Signin_Page> {
                       style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
-                          color: Colors.greenAccent),
+                          color: Colors.black),
                     ),
                   ),
                 ),
@@ -84,7 +88,9 @@ class _LoginPage1State extends State<Signin_Page> {
                       if (value == null || value.isEmpty) {
                         return "Email can't be empty";
                       }
-                      if (!RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(value)) {
+                      if (!RegExp(
+                              r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
+                          .hasMatch(value)) {
                         return "Enter a valid email adress";
                       }
                       return null;
@@ -94,13 +100,24 @@ class _LoginPage1State extends State<Signin_Page> {
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: TextFormField(
-                    decoration: const InputDecoration(
+                    controller: passwordController,
+                    obscureText: !passwordVisible,
+                    decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white70,
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(30)),
                             borderSide: BorderSide(color: Colors.greenAccent)),
                         hintText: "Password",
+                        suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                passwordVisible = !passwordVisible;
+                              });
+                            },
+                            icon: Icon(passwordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off)),
                         hintStyle: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.bold),
                         prefixIcon: Icon(
@@ -110,8 +127,10 @@ class _LoginPage1State extends State<Signin_Page> {
                       if (value == null || value.isEmpty) {
                         return "Password can't be empty";
                       }
-                      if (!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,12}$').hasMatch(value)){
-                        return "Enter a strong password";
+                      if (!RegExp(
+                              r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,12}$')
+                          .hasMatch(value)) {
+                        return "Incorrect Password";
                       }
                       return null;
                     },
@@ -123,7 +142,15 @@ class _LoginPage1State extends State<Signin_Page> {
                     Padding(
                       padding: const EdgeInsets.only(right: 20),
                       child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              Navigator.pushReplacement(context, MaterialPageRoute(
+                                builder: (context) {
+                                  return ForgotPassword();
+                                },
+                              ));
+                            });
+                          },
                           child: const Text(
                             "Forgot your password?",
                             style: TextStyle(
@@ -161,7 +188,15 @@ class _LoginPage1State extends State<Signin_Page> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return SignupPage();
+                            },
+                          ));
+                        });
+                      },
                       child: const Text(
                         "New user? Create new account",
                         style: TextStyle(

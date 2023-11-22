@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:my_project/screens/front_page.dart';
+import 'package:my_project/screens/profile_page.dart';
 import 'package:my_project/screens/signin_page.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -11,18 +13,16 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
-
   @override
   void initState() {
     super.initState();
 
     Timer(
-      Duration(seconds: 1),
-          () => Navigator.pushReplacement(
+      Duration(seconds: 2),
+      () => Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => Signin_Page(),
+          builder: (context) => FrontPage(),
         ),
       ),
     );

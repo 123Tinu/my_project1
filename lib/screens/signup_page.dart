@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_project/screens/signin_page.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -13,6 +14,8 @@ class _LoginPage1State extends State<SignupPage> {
   var emailController = TextEditingController();
   var password = TextEditingController();
   var confirm_password = TextEditingController();
+  bool passwordVisible = false;
+  bool passVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -34,19 +37,22 @@ class _LoginPage1State extends State<SignupPage> {
                         width: 180,
                         child: Stack(
                           children: [
-                            Center(
-                              child: Image(
-                                  image: AssetImage(
-                                'assets/images1/nikeshoelogo3.png',
-                              )),
-                            )
+                            // Center(
+                            //   child: Image(
+                            //       image: AssetImage(
+                            //     'assets/images1/nikeshoelogo3.png',
+                            //   )),
+                            // )
                           ],
                         ),
                       ),
                     ),
                   ),
                 ),
-                const Padding(
+                SizedBox(
+                  height: 50,
+                ),
+                Padding(
                   padding: EdgeInsets.all(10.0),
                   child: Center(
                     child: Text(
@@ -54,7 +60,7 @@ class _LoginPage1State extends State<SignupPage> {
                       style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
-                          color: Colors.greenAccent),
+                          color: Colors.black),
                     ),
                   ),
                 ),
@@ -63,7 +69,7 @@ class _LoginPage1State extends State<SignupPage> {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 50,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -83,7 +89,7 @@ class _LoginPage1State extends State<SignupPage> {
                     controller: emailController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "Email can't be empty";
+                        return "Name can't be empty";
                       }
                       return null;
                     },
@@ -118,11 +124,19 @@ class _LoginPage1State extends State<SignupPage> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0),
                   child: TextFormField(
-                    // obscureText: true,
-                    // obscuringCharacter: "*",
-                    decoration: const InputDecoration(
+                    obscureText: !passwordVisible,
+                    decoration: InputDecoration(
+                        suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                passwordVisible = !passwordVisible;
+                              });
+                            },
+                            icon: Icon(passwordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off)),
                         filled: true,
                         fillColor: Colors.white70,
                         border: OutlineInputBorder(
@@ -151,21 +165,29 @@ class _LoginPage1State extends State<SignupPage> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    // obscureText: true,
-                    // obscuringCharacter: "*",
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white70,
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(30)),
                             borderSide: BorderSide(color: Colors.greenAccent)),
-                        hintText: "Password",
+                        hintText: "Confirm Password",
                         hintStyle: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.bold),
                         prefixIcon: Icon(
                           Icons.lock,
-                        )),
+                        ),
+                        suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                passVisible = !passVisible;
+                              });
+                            },
+                            icon: Icon(passVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off))),
                     controller: confirm_password,
+                    obscureText: !passVisible,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Password can't be empty";
@@ -178,19 +200,6 @@ class _LoginPage1State extends State<SignupPage> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: TextButton(
-                          onPressed: () {},
-                          child: const Text(
-                            "Forgot your password?",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
-                          )),
-                    ),
-                  ],
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -220,7 +229,15 @@ class _LoginPage1State extends State<SignupPage> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return Signin_Page();
+                            },
+                          ));
+                        });
+                      },
                       child: const Text(
                         "New user? Create new account",
                         style: TextStyle(

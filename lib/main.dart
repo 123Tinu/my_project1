@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_project/screens/profile_page.dart';
-import 'package:my_project/screens/signin_page.dart';
-import 'package:my_project/screens/signup_page.dart';
 import 'package:my_project/screens/splash_screen.dart';
 
 main() {
@@ -13,8 +10,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: SplashScreen(),
-    );
+    return MaterialApp(home: SplashScreen());
   }
 }

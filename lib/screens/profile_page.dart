@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -65,7 +64,8 @@ class _ProfileState extends State<ProfilePage> {
                           filled: true,
                           fillColor: Colors.white70,
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(30)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30)),
                               borderSide: BorderSide(
                                 color: Colors.white,
                               )),
@@ -89,7 +89,8 @@ class _ProfileState extends State<ProfilePage> {
                           filled: true,
                           fillColor: Colors.white70,
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(30)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30)),
                               borderSide: BorderSide(
                                 color: Colors.white,
                               )),
@@ -117,7 +118,8 @@ class _ProfileState extends State<ProfilePage> {
                           filled: true,
                           fillColor: Colors.white70,
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(30)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30)),
                               borderSide: BorderSide(
                                 color: Colors.white,
                               )),
@@ -130,7 +132,7 @@ class _ProfileState extends State<ProfilePage> {
                           return "Email can't be empty";
                         }
                         if (!RegExp(
-                            r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
+                                r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
                             .hasMatch(value)) {
                           return "Enter a valid email adress";
                         }
@@ -147,8 +149,10 @@ class _ProfileState extends State<ProfilePage> {
                           filled: true,
                           fillColor: Colors.white70,
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(30)),
-                              borderSide: BorderSide(color: Colors.greenAccent)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30)),
+                              borderSide:
+                                  BorderSide(color: Colors.greenAccent)),
                           hintText: "Password",
                           hintStyle: TextStyle(
                               color: Colors.black, fontWeight: FontWeight.bold),
@@ -161,7 +165,7 @@ class _ProfileState extends State<ProfilePage> {
                           return "Password can't be empty";
                         }
                         if (!RegExp(
-                            r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,12}$')
+                                r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,12}$')
                             .hasMatch(value)) {
                           return "Enter a strong password";
                         }

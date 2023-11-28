@@ -16,7 +16,9 @@ class _ProfileState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery
+        .of(context)
+        .size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -65,7 +67,7 @@ class _ProfileState extends State<ProfilePage> {
                           fillColor: Colors.white70,
                           border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(30)),
+                              BorderRadius.all(Radius.circular(30)),
                               borderSide: BorderSide(
                                 color: Colors.white,
                               )),
@@ -90,7 +92,7 @@ class _ProfileState extends State<ProfilePage> {
                           fillColor: Colors.white70,
                           border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(30)),
+                              BorderRadius.all(Radius.circular(30)),
                               borderSide: BorderSide(
                                 color: Colors.white,
                               )),
@@ -119,7 +121,7 @@ class _ProfileState extends State<ProfilePage> {
                           fillColor: Colors.white70,
                           border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(30)),
+                              BorderRadius.all(Radius.circular(30)),
                               borderSide: BorderSide(
                                 color: Colors.white,
                               )),
@@ -132,7 +134,7 @@ class _ProfileState extends State<ProfilePage> {
                           return "Email can't be empty";
                         }
                         if (!RegExp(
-                                r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
+                            r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
                             .hasMatch(value)) {
                           return "Enter a valid email adress";
                         }
@@ -150,9 +152,9 @@ class _ProfileState extends State<ProfilePage> {
                           fillColor: Colors.white70,
                           border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(30)),
+                              BorderRadius.all(Radius.circular(30)),
                               borderSide:
-                                  BorderSide(color: Colors.greenAccent)),
+                              BorderSide(color: Colors.greenAccent)),
                           hintText: "Password",
                           hintStyle: TextStyle(
                               color: Colors.black, fontWeight: FontWeight.bold),
@@ -165,7 +167,7 @@ class _ProfileState extends State<ProfilePage> {
                           return "Password can't be empty";
                         }
                         if (!RegExp(
-                                r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,12}$')
+                            r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,12}$')
                             .hasMatch(value)) {
                           return "Enter a strong password";
                         }

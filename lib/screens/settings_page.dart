@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_project/screens/profile_page.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -19,8 +20,11 @@ class _SettingsState extends State<Settings> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.black,
-          title: Text("Settings"),
+          backgroundColor: const Color.fromARGB(255, 255, 214, 247),
+          title: const Text(
+            "Settings",
+            style: TextStyle(color: Colors.black),
+          ),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -29,34 +33,40 @@ class _SettingsState extends State<Settings> {
               children: [
                 Card(
                   child: ListTile(
-                    onTap: () {},
-                    leading: Icon(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return const ProfilePage();
+                        },
+                      ));
+                    },
+                    leading: const Icon(
                       Icons.account_circle,
                       size: 25,
                     ),
-                    title: Text("Account"),
+                    title: const Text("Account"),
                   ),
                 ),
                 Card(
                   child: ListTile(
                     onTap: () {},
-                    leading: Icon(
+                    leading: const Icon(
                       Icons.privacy_tip,
                       size: 25,
                     ),
-                    title: Text("Privacy Policy"),
+                    title: const Text("Privacy Policy"),
                   ),
                 ),
                 Card(
                   child: ListTile(
                     onTap: () {},
-                    leading: Icon(
-                      Icons.account_circle,
+                    leading: const Icon(
+                      Icons.notifications,
                       size: 25,
                     ),
-                    title: Text("Notifications"),
+                    title: const Text("Notifications"),
                     trailing: Switch(
-                      activeColor: Colors.black,
+                      activeColor: const Color.fromARGB(255, 255, 214, 247),
                       value: switch1,
                       onChanged: (value) {
                         setState(() {
@@ -69,13 +79,13 @@ class _SettingsState extends State<Settings> {
                 Card(
                   child: ListTile(
                     onTap: () {},
-                    leading: Icon(
+                    leading: const Icon(
                       Icons.light_mode_outlined,
                       size: 25,
                     ),
-                    title: Text("Dark/Light"),
+                    title: const Text("Dark/Light"),
                     trailing: Switch(
-                      activeColor: Colors.black,
+                      activeColor: const Color.fromARGB(255, 255, 214, 247),
                       value: switch2,
                       onChanged: (value) {
                         setState(() {
@@ -88,11 +98,11 @@ class _SettingsState extends State<Settings> {
                 Card(
                   child: ListTile(
                       onTap: () {},
-                      leading: Icon(
+                      leading: const Icon(
                         Icons.language,
                         size: 25,
                       ),
-                      title: Text("Language"),
+                      title: const Text("Language"),
                       trailing: DropdownButton(
                         value: dropDownbutton1,
                         items: languages.map((String items) {
@@ -109,31 +119,31 @@ class _SettingsState extends State<Settings> {
                 Card(
                   child: ListTile(
                     onTap: () {},
-                    leading: Icon(
+                    leading: const Icon(
                       Icons.password,
                       size: 25,
                     ),
-                    title: Text("Change Password"),
+                    title: const Text("Change Password"),
                   ),
                 ),
                 Card(
                   child: ListTile(
                     onTap: () {},
-                    leading: Icon(
+                    leading: const Icon(
                       Icons.delete,
                       size: 25,
                     ),
-                    title: Text("Delete Account"),
+                    title: const Text("Delete Account"),
                   ),
                 ),
                 Card(
                   child: ListTile(
                     onTap: () {},
-                    leading: Icon(
+                    leading: const Icon(
                       Icons.logout,
                       size: 25,
                     ),
-                    title: Text("Log Out"),
+                    title: const Text("Log Out"),
                   ),
                 ),
               ],

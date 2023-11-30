@@ -16,12 +16,11 @@ class _ProfileState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 255, 214, 247),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 255, 214, 247),
         title: const Text("Edit Profile",
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.w800)),
       ),
@@ -62,15 +61,14 @@ class _ProfileState extends State<ProfilePage> {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: TextFormField(
+                      keyboardType: TextInputType.name,
                       decoration: const InputDecoration(
                           filled: true,
                           fillColor: Colors.white70,
                           border: OutlineInputBorder(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(30)),
-                              borderSide: BorderSide(
-                                color: Colors.white,
-                              )),
+                                  BorderRadius.all(Radius.circular(30)),
+                              borderSide: BorderSide()),
                           hintText: "Name",
                           hintStyle: TextStyle(
                               color: Colors.black, fontWeight: FontWeight.bold),
@@ -78,7 +76,11 @@ class _ProfileState extends State<ProfilePage> {
                       controller: mobile,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "Email can't be empty";
+                          return "Name can't be empty";
+                        }
+                        if (!RegExp(r'^[A-Za-z]+([\ A-Za-z]+)$')
+                            .hasMatch(value)) {
+                          return "Enter a valid Name";
                         }
                         return null;
                       },
@@ -87,15 +89,14 @@ class _ProfileState extends State<ProfilePage> {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: TextFormField(
+                      keyboardType: TextInputType.phone,
                       decoration: const InputDecoration(
                           filled: true,
                           fillColor: Colors.white70,
                           border: OutlineInputBorder(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(30)),
-                              borderSide: BorderSide(
-                                color: Colors.white,
-                              )),
+                                  BorderRadius.all(Radius.circular(30)),
+                              borderSide: BorderSide()),
                           hintText: "Mobile no",
                           hintStyle: TextStyle(
                               color: Colors.black, fontWeight: FontWeight.bold),
@@ -107,7 +108,7 @@ class _ProfileState extends State<ProfilePage> {
                         }
                         if (!RegExp(r'^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$')
                             .hasMatch(value)) {
-                          return "Enter a valid mobile number address";
+                          return "Enter a valid mobile number";
                         }
                         return null;
                       },
@@ -116,15 +117,14 @@ class _ProfileState extends State<ProfilePage> {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: TextFormField(
+                      keyboardType: TextInputType.emailAddress,
                       decoration: const InputDecoration(
                           filled: true,
                           fillColor: Colors.white70,
                           border: OutlineInputBorder(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(30)),
-                              borderSide: BorderSide(
-                                color: Colors.white,
-                              )),
+                                  BorderRadius.all(Radius.circular(30)),
+                              borderSide: BorderSide()),
                           hintText: "E-mail",
                           hintStyle: TextStyle(
                               color: Colors.black, fontWeight: FontWeight.bold),
@@ -134,9 +134,9 @@ class _ProfileState extends State<ProfilePage> {
                           return "Email can't be empty";
                         }
                         if (!RegExp(
-                            r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
+                                r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
                             .hasMatch(value)) {
-                          return "Enter a valid email adress";
+                          return "Enter a valid email address";
                         }
                         return null;
                       },
@@ -145,16 +145,13 @@ class _ProfileState extends State<ProfilePage> {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: TextFormField(
-                      // obscureText: true,
-                      // obscuringCharacter: "*",
+                      keyboardType: TextInputType.visiblePassword,
                       decoration: const InputDecoration(
                           filled: true,
                           fillColor: Colors.white70,
                           border: OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(30)),
-                              borderSide:
-                              BorderSide(color: Colors.greenAccent)),
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                          ),
                           hintText: "Password",
                           hintStyle: TextStyle(
                               color: Colors.black, fontWeight: FontWeight.bold),
@@ -167,9 +164,9 @@ class _ProfileState extends State<ProfilePage> {
                           return "Password can't be empty";
                         }
                         if (!RegExp(
-                            r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,12}$')
+                                r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,12}$')
                             .hasMatch(value)) {
-                          return "Enter a strong password";
+                          return " Your password must be at 8 to 12 least characters long,\n include a number, an uppercase letter and a lowercase letter";
                         }
                         return null;
                       },
@@ -188,7 +185,7 @@ class _ProfileState extends State<ProfilePage> {
                           onPressed: () {
                             if (loginKey.currentState!.validate()) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text("Success")),
+                                const SnackBar(content: Text("Saved")),
                               );
                             }
                           },

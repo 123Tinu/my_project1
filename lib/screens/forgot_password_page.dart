@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_project/screens/signin_page.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -15,17 +14,17 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white70,
+      backgroundColor: const Color.fromARGB(255, 255, 214, 247),
       body: Form(
         key: loginkey,
         child: SingleChildScrollView(
           child: Center(
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 225,
                 ),
-                Center(
+                const Center(
                     child: Text(
                   "Forgot Password",
                   style: TextStyle(
@@ -35,21 +34,22 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 )),
                 Container(
                   alignment: Alignment.center,
-                  child: Padding(
-                    padding: const EdgeInsets.all(30.0),
+                  child: const Padding(
+                    padding: EdgeInsets.all(30.0),
                     child: Text(
-                      "please enter your email address.you will recieve a link to create a new password via email",
+                      "please enter your email address.you will receive a link to create a new password via email",
                       textAlign: TextAlign.center,
                       style: TextStyle(),
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: TextFormField(
+                    keyboardType: TextInputType.emailAddress,
                     controller: TextEditingController(),
                     decoration: const InputDecoration(
                         filled: true,
@@ -70,13 +70,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       if (!RegExp(
                               r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
                           .hasMatch(value)) {
-                        return "Enter a valid email adress";
+                        return "Enter a valid email address";
                       }
                       return null;
                     },
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Padding(
@@ -91,7 +91,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         onPressed: () {
                           if (loginkey.currentState!.validate()) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text("Fetching Data")),
+                              const SnackBar(content: Text("Check Your Mail")),
                             );
                           }
                         },
@@ -103,26 +103,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                               fontSize: 15),
                         )),
                   ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                TextButton(
-                    onPressed: () {
-                      setState(() {
-                        Navigator.pushReplacement(context, MaterialPageRoute(
-                          builder: (context) {
-                            return Signin_Page();
-                          },
-                        ));
-                      });
-                    },
-                    child: Text(
-                      "Back to Login",
-                      style: TextStyle(color: Colors.black),
-                    )),
-                SizedBox(
-                  height: 20,
                 ),
               ],
             ),

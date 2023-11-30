@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_project/screens/forgot_password_page.dart';
+import 'package:my_project/screens/home_page.dart';
 import 'package:my_project/screens/signup_page.dart';
 
 class Signin_Page extends StatefulWidget {
@@ -20,7 +21,7 @@ class _LoginPage1State extends State<Signin_Page> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white70,
+        backgroundColor: const Color.fromARGB(255, 255, 214, 247),
         body: SingleChildScrollView(
           child: Form(
             key: loginkey,
@@ -33,18 +34,7 @@ class _LoginPage1State extends State<Signin_Page> {
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: SizedBox(
-                        height: 180,
-                        width: 300,
-                        child: Stack(
-                          children: [
-                            // Center(
-                            //   child: Image(
-                            //       image: AssetImage(
-                            //     'assets/images1/nikeshoelogo3.png',
-                            //   )),
-                            // )
-                          ],
-                        ),
+                        height: 50,
                       ),
                     ),
                   ),
@@ -55,7 +45,7 @@ class _LoginPage1State extends State<Signin_Page> {
                     child: Text(
                       "Login here",
                       style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 60,
                           fontWeight: FontWeight.bold,
                           color: Colors.black),
                     ),
@@ -66,20 +56,18 @@ class _LoginPage1State extends State<Signin_Page> {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
-                  width: 50,
-                  height: 25,
+                  height: 50,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: TextFormField(
+                    keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
                         filled: true,
                         fillColor: Colors.white70,
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(30)),
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                            )),
+                            borderSide: BorderSide()),
                         hintText: "E-mail",
                         hintStyle: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.bold),
@@ -91,11 +79,14 @@ class _LoginPage1State extends State<Signin_Page> {
                       if (!RegExp(
                               r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
                           .hasMatch(value)) {
-                        return "Enter a valid email adress";
+                        return "Enter a valid email address";
                       }
                       return null;
                     },
                   ),
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(12.0),
@@ -105,9 +96,9 @@ class _LoginPage1State extends State<Signin_Page> {
                     decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white70,
-                        border: OutlineInputBorder(
+                        border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(30)),
-                            borderSide: BorderSide(color: Colors.greenAccent)),
+                            borderSide: BorderSide(color: Colors.black)),
                         hintText: "Password",
                         suffixIcon: IconButton(
                             onPressed: () {
@@ -118,9 +109,9 @@ class _LoginPage1State extends State<Signin_Page> {
                             icon: Icon(passwordVisible
                                 ? Icons.visibility
                                 : Icons.visibility_off)),
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                             color: Colors.black, fontWeight: FontWeight.bold),
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.lock,
                         )),
                     validator: (value) {
@@ -128,9 +119,9 @@ class _LoginPage1State extends State<Signin_Page> {
                         return "Password can't be empty";
                       }
                       if (!RegExp(
-                              r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,12}$')
+                              r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,12}$')
                           .hasMatch(value)) {
-                        return "Incorrect Password";
+                        return "Enter a valid password";
                       }
                       return null;
                     },
@@ -144,9 +135,9 @@ class _LoginPage1State extends State<Signin_Page> {
                       child: TextButton(
                           onPressed: () {
                             setState(() {
-                              Navigator.pushReplacement(context, MaterialPageRoute(
+                              Navigator.push(context, MaterialPageRoute(
                                 builder: (context) {
-                                  return ForgotPassword();
+                                  return const ForgotPassword();
                                 },
                               ));
                             });
@@ -154,11 +145,14 @@ class _LoginPage1State extends State<Signin_Page> {
                           child: const Text(
                             "Forgot your password?",
                             style: TextStyle(
-                                color: Colors.black,
+                                color: Colors.blueAccent,
                                 fontWeight: FontWeight.bold),
                           )),
                     ),
                   ],
+                ),
+                const SizedBox(
+                  height: 20,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -174,6 +168,15 @@ class _LoginPage1State extends State<Signin_Page> {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(content: Text("Success")),
                             );
+
+                            setState(() {
+                              Navigator.pushReplacement(context,
+                                  MaterialPageRoute(
+                                builder: (context) {
+                                  return const HomePage();
+                                },
+                              ));
+                            });
                           }
                         },
                         child: const Text(
@@ -185,6 +188,9 @@ class _LoginPage1State extends State<Signin_Page> {
                         )),
                   ),
                 ),
+                const SizedBox(
+                  height: 10,
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextButton(
@@ -192,7 +198,7 @@ class _LoginPage1State extends State<Signin_Page> {
                         setState(() {
                           Navigator.push(context, MaterialPageRoute(
                             builder: (context) {
-                              return SignupPage();
+                              return const SignupPage();
                             },
                           ));
                         });
@@ -204,13 +210,15 @@ class _LoginPage1State extends State<Signin_Page> {
                       )),
                 ),
                 const SizedBox(
-                  width: 50,
-                  height: 50,
+                  height: 130,
                 ),
                 const Text(
                   "Or continue with",
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.black),
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

@@ -21,7 +21,7 @@ class _LoginPage1State extends State<SignupPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white70,
+        backgroundColor: const Color.fromARGB(255, 255, 214, 247),
         body: SingleChildScrollView(
           child: Form(
             key: loginkey,
@@ -34,38 +34,25 @@ class _LoginPage1State extends State<SignupPage> {
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: SizedBox(
-                        width: 180,
-                        child: Stack(
-                          children: [
-                            // Center(
-                            //   child: Image(
-                            //       image: AssetImage(
-                            //     'assets/images1/nikeshoelogo3.png',
-                            //   )),
-                            // )
-                          ],
-                        ),
+                        height: 50,
                       ),
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 50,
-                ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.all(10.0),
                   child: Center(
                     child: Text(
-                      "Login here",
+                      "Register Here",
                       style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 60,
                           fontWeight: FontWeight.bold,
                           color: Colors.black),
                     ),
                   ),
                 ),
                 const Text(
-                  "Welcome back! You've Been Missed",
+                  "Create Your Account",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
@@ -74,14 +61,13 @@ class _LoginPage1State extends State<SignupPage> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
+                    keyboardType: TextInputType.name,
                     decoration: const InputDecoration(
                         filled: true,
                         fillColor: Colors.white70,
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(30)),
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                            )),
+                            borderSide: BorderSide()),
                         hintText: "Name",
                         hintStyle: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.bold),
@@ -91,21 +77,27 @@ class _LoginPage1State extends State<SignupPage> {
                       if (value == null || value.isEmpty) {
                         return "Name can't be empty";
                       }
+                      if (!RegExp(r'^[A-Za-z]+([\ A-Za-z]+)$')
+                          .hasMatch(value)) {
+                        return "Enter a valid Name";
+                      }
                       return null;
                     },
                   ),
                 ),
+                const SizedBox(
+                  height: 10,
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
+                    keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
                         filled: true,
                         fillColor: Colors.white70,
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(30)),
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                            )),
+                            borderSide: BorderSide()),
                         hintText: "E-mail",
                         hintStyle: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.bold),
@@ -117,14 +109,17 @@ class _LoginPage1State extends State<SignupPage> {
                       if (!RegExp(
                               r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
                           .hasMatch(value)) {
-                        return "Enter a valid email adress";
+                        return "Enter a valid email address";
                       }
                       return null;
                     },
                   ),
                 ),
+                const SizedBox(
+                  height: 10,
+                ),
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     obscureText: !passwordVisible,
                     decoration: InputDecoration(
@@ -139,13 +134,13 @@ class _LoginPage1State extends State<SignupPage> {
                                 : Icons.visibility_off)),
                         filled: true,
                         fillColor: Colors.white70,
-                        border: OutlineInputBorder(
+                        border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(30)),
-                            borderSide: BorderSide(color: Colors.greenAccent)),
+                            borderSide: BorderSide(color: Colors.black)),
                         hintText: "Password",
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                             color: Colors.black, fontWeight: FontWeight.bold),
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.lock,
                         )),
                     controller: password,
@@ -154,13 +149,16 @@ class _LoginPage1State extends State<SignupPage> {
                         return "Password can't be empty";
                       }
                       if (!RegExp(
-                              r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,12}$')
+                              r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,12}$')
                           .hasMatch(value)) {
-                        return "Enter a strong password";
+                        return " Your password must be 8 to 12 characters long,\n include a number, an uppercase letter and a lowercase letter.";
                       }
                       return null;
                     },
                   ),
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -168,13 +166,13 @@ class _LoginPage1State extends State<SignupPage> {
                     decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white70,
-                        border: OutlineInputBorder(
+                        border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(30)),
-                            borderSide: BorderSide(color: Colors.greenAccent)),
+                            borderSide: BorderSide(color: Colors.black)),
                         hintText: "Confirm Password",
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                             color: Colors.black, fontWeight: FontWeight.bold),
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.lock,
                         ),
                         suffixIcon: IconButton(
@@ -190,7 +188,7 @@ class _LoginPage1State extends State<SignupPage> {
                     obscureText: !passVisible,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "Password can't be empty";
+                        return "Re-enter your password";
                       } else if (value != password.text) {
                         return "Password Must Be Same";
                       }
@@ -198,8 +196,8 @@ class _LoginPage1State extends State<SignupPage> {
                     },
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                const SizedBox(
+                  height: 20,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -213,18 +211,21 @@ class _LoginPage1State extends State<SignupPage> {
                         onPressed: () {
                           if (loginkey.currentState!.validate()) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text("Success")),
+                              const SnackBar(content: Text("Saving Data")),
                             );
                           }
                         },
                         child: const Text(
-                          "Sign in",
+                          "Sign Up",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                               fontSize: 23),
                         )),
                   ),
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -233,7 +234,7 @@ class _LoginPage1State extends State<SignupPage> {
                         setState(() {
                           Navigator.push(context, MaterialPageRoute(
                             builder: (context) {
-                              return Signin_Page();
+                              return const Signin_Page();
                             },
                           ));
                         });
@@ -245,13 +246,15 @@ class _LoginPage1State extends State<SignupPage> {
                       )),
                 ),
                 const SizedBox(
-                  width: 50,
-                  height: 50,
+                  height: 60,
                 ),
                 const Text(
                   "Or continue with",
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.black),
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

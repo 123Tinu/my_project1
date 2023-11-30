@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_project/screens/profile_page.dart';
 import 'package:my_project/screens/settings_page.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,12 +17,11 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: const Color.fromARGB(255, 255, 214, 247),
           elevation: 0,
           iconTheme: const IconThemeData(color: Colors.black),
         ),
         drawer: Drawer(
-          backgroundColor: const Color.fromARGB(255, 255, 214, 247),
           shape: const OutlineInputBorder(
               borderRadius: BorderRadius.only(
                   bottomRight: Radius.circular(40),
@@ -59,7 +59,6 @@ class _HomePageState extends State<HomePage> {
               const Text(
                 "tinu@gmail.com",
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.black, fontSize: 10),
               ),
               const SizedBox(
                 height: 30,
@@ -67,7 +66,6 @@ class _HomePageState extends State<HomePage> {
               Card(
                 child: ListTile(
                   leading: const Icon(Icons.home),
-                  tileColor: const Color.fromARGB(255, 255, 214, 247),
                   onTap: () {
                     setState(() {
                       Navigator.push(context, MaterialPageRoute(
@@ -86,7 +84,6 @@ class _HomePageState extends State<HomePage> {
               Card(
                 child: ListTile(
                   leading: const Icon(Icons.account_box),
-                  tileColor: const Color.fromARGB(255, 255, 214, 247),
                   onTap: () {
                     setState(() {
                       Navigator.push(context, MaterialPageRoute(
@@ -105,7 +102,6 @@ class _HomePageState extends State<HomePage> {
               Card(
                 child: ListTile(
                   leading: const Icon(Icons.shopping_cart),
-                  tileColor: const Color.fromARGB(255, 255, 214, 247),
                   onTap: () {},
                   title: const Text(
                     "My Orders",
@@ -116,7 +112,6 @@ class _HomePageState extends State<HomePage> {
               Card(
                 child: ListTile(
                   leading: const Icon(Icons.settings),
-                  tileColor: const Color.fromARGB(255, 255, 214, 247),
                   onTap: () {
                     setState(() {
                       Navigator.push(context, MaterialPageRoute(
@@ -135,7 +130,6 @@ class _HomePageState extends State<HomePage> {
               Card(
                 child: ListTile(
                   leading: const Icon(Icons.logout),
-                  tileColor: const Color.fromARGB(255, 255, 214, 247),
                   onTap: () {},
                   title: const Text(
                     "Logout",

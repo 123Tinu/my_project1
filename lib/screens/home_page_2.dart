@@ -151,7 +151,6 @@ class _HomeScreen2State extends State<HomeScreen2> {
                         //   ),
                         // );
                       },
-
                       child: Container(
                         // padding: const EdgeInsets.all(5),
                           decoration: BoxDecoration(

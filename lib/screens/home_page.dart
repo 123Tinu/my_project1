@@ -151,32 +151,82 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-
-        body: CarouselSlider(
-            items: imgList.map((item) {
-              return SizedBox(
-                width: double.infinity,
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.network(item,
-                        fit: BoxFit.cover, width: double.infinity, height: 500),
+        body: SingleChildScrollView(
+          child: Column(children: [
+            SizedBox(
+              height: 5,
+            ),
+            Align(
+              alignment: Alignment(-0.96, 0),
+              child: Text(
+                "Trending Deals",
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            CarouselSlider(
+                items: imgList.map((item) {
+                  return SizedBox(
+                    width: double.infinity,
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.network(item,
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            height: 500),
+                      ),
+                    ),
+                  );
+                }).toList(),
+                options: CarouselOptions(
+                  scrollPhysics: const BouncingScrollPhysics(),
+                  autoPlay: true,
+                  aspectRatio: 2.0,
+                  viewportFraction: 1,
+                  autoPlayAnimationDuration: Duration(seconds: 2),
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      currentIndex = index;
+                    });
+                  },
+                )),
+            Align(
+              alignment: Alignment(-0.96, 0),
+              child: Text(
+                "All category",
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: CircleAvatar(
+                    backgroundColor: Colors.grey,
+                    radius: 40,
                   ),
                 ),
-              );
-            }).toList(),
-            options: CarouselOptions(
-              scrollPhysics: const BouncingScrollPhysics(),
-              autoPlay: true,
-              aspectRatio: 2.0,
-              viewportFraction: 1,
-              autoPlayAnimationDuration: Duration(seconds: 2),
-              onPageChanged: (index, reason) {
-                setState(() {
-                  currentIndex = index;
-                });
-              },
-            )),
+                CircleAvatar(
+                  backgroundColor: Colors.grey,
+                  radius: 40,
+                ),
+              ],
+            ),
+            Column(
+              children: [Align(
+                  child: Text("NIke"))],
+            )
+          ]
+          ),
+        ),
         bottomNavigationBar: CurvedNavigationBar(
           color: Colors.black,
           backgroundColor: Colors.white,

@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:my_project/screens/navigation_bar.dart';
@@ -17,9 +16,9 @@ class _HomePageState extends State<HomePage> {
   CarouselController carouselController = CarouselController();
   int currentIndex = 0;
   final List<String> imgList = [
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOKJYcQPzdQ8pm3hPOllUIXG7nxoBw9Ojhvg&usqp=CAU',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrD8DD4OaVgo0YWMZacO0bCDiadvVVLMBovg&usqp=CAU',
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYWClwz2lgiKN-z4T1dzhtI8A7yJo1yZhJ3A&usqp=CAU"
+    'assets/images1/bg1.jpeg',
+    'assets/images1/bg2.jpeg',
+    "assets/images1/bg3.jpeg"
   ];
 
   @override
@@ -154,7 +153,7 @@ class _HomePageState extends State<HomePage> {
         body: SingleChildScrollView(
           child: Column(children: [
             SizedBox(
-              height: 5,
+              height: 10,
             ),
             Align(
               alignment: Alignment(-0.96, 0),
@@ -167,6 +166,9 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
+            SizedBox(
+              height: 5,
+            ),
             CarouselSlider(
                 items: imgList.map((item) {
                   return SizedBox(
@@ -174,7 +176,7 @@ class _HomePageState extends State<HomePage> {
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Image.network(item,
+                        child: Image.asset(item,
                             fit: BoxFit.cover,
                             width: double.infinity,
                             height: 500),
@@ -194,6 +196,9 @@ class _HomePageState extends State<HomePage> {
                     });
                   },
                 )),
+            SizedBox(
+              height: 5,
+            ),
             Align(
               alignment: Alignment(-0.96, 0),
               child: Text(
@@ -205,28 +210,113 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.grey,
-                    radius: 40,
-                  ),
-                ),
-                CircleAvatar(
-                  backgroundColor: Colors.grey,
-                  radius: 40,
-                ),
-              ],
+            SizedBox(
+              height: 10,
             ),
-            Column(
-              children: [Align(
-                  child: Text("NIke"))],
-            )
-          ]
-          ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.grey,
+                          radius: 40,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text("Nike")
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.grey,
+                          radius: 40,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text("Adidas")
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.grey,
+                          radius: 40,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text("Puma")
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.grey,
+                          radius: 40,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text("New Balance")
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.grey,
+                          radius: 40,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text("Converse")
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.grey,
+                          radius: 40,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text("Vans")
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+          ]),
         ),
+        extendBody: true,
+
         bottomNavigationBar: CurvedNavigationBar(
           color: Colors.black,
           backgroundColor: Colors.white,

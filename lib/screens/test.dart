@@ -1,70 +1,240 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-class Test1 extends StatefulWidget {
-  const Test1({super.key});
+
+class HomePage22 extends StatefulWidget {
+  const HomePage22({Key? key}) : super(key: key);
 
   @override
-  State<Test1> createState() => _Test1State();
+  State<HomePage22> createState() => _HomePage22State();
 }
 
-class _Test1State extends State<Test1> {
-  final List<String> products = [
-    'Product 1',
-    'Product 2',
-    'Product 3',
-    'Product 4',
-    'Product 5',
-    'Product 6',
-    'Product 7',
-    'Product 8',
-    'Product 9',
+class _HomePage22State extends State<HomePage22> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final List<String> carName = [
+    'Jeep W186X LandSUV',
+    'LAND ROVER X800',
+    'Benz S Class 350CDI',
+    'AUDI Q5 40 TDI'
   ];
+  final List<String> carImages = [
+    'assets/images/whitecar.jpg',
+    'assets/images/rangerover.jpg',
+    'assets/images/blackcar.jpg',
+    'assets/images/cargr.jpg'
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GridView.builder(
-        padding: EdgeInsets.all(8.0),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // Number of grid columns
-          crossAxisSpacing: 15.0,
-          mainAxisSpacing: 15.0,
+    return MaterialApp(
+      home: Scaffold(backgroundColor: Colors.black,
+        key: _scaffoldKey,
+        appBar: CustomAppBar(
+          scaffoldKey: _scaffoldKey,
+          preferredSize: const Size.fromHeight(70),
         ),
-        itemCount: products.length,
-        itemBuilder: (BuildContext context, int index) {
-          return ProductCard(
-              productName: products[index]
-          );
-        },
+        body:  ListView.builder(
+          itemCount: carName.length,
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: () {
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) =>
+                //     const Details(), // Details widget for car details
+                //   ),
+                // );
+              },
+              child: Card(
+                color: Colors.white70,
+                elevation: 8,
+                margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius:
+                      BorderRadius.vertical(top: Radius.circular(10)),
+                      child: SizedBox(
+                        height: 200,
+                        width: double.infinity,
+                        child: Image.asset(
+                          carImages[index],
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        carName[index],
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w900,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.calendar_today_rounded,
+                                  color: Colors.white70),
+                              Text(
+                                '2014',
+                                style: TextStyle(fontWeight: FontWeight.w900),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.speed_rounded,
+                                  color: Color.fromARGB(1768, 255, 204, 0)),
+                              Text(
+                                '59000 KM',
+                                style: TextStyle(fontWeight: FontWeight.w900),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.info_outline_rounded,
+                                  color: Colors.teal),
+                              Text(
+                                'Diesel',
+                                style: TextStyle(fontWeight: FontWeight.w900),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.currency_rupee),
+                              Text(
+                                '71,00,000',
+                                style: TextStyle(fontWeight: FontWeight.w900),
+                              )
+                            ],
+                          ),
+                          Icon(
+                            Icons.favorite_border,
+                            color: Color.fromARGB(000066, 0, 0, 102),
+                          )
+                        ],
+                      ),
+                    )
+                    // Other car details here
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: Text('Drawer Header'),
+              ),
+              ListTile(
+                title: Text('Item 1'),
+                onTap: () {
+                  // Add functionality when Drawer item 1 is selected
+                },
+              ),
+              ListTile(
+                title: Text('Item 2'),
+                onTap: () {
+                  // Add functionality when Drawer item 2 is selected
+                },
+              ),
+              // Add more items as needed
+            ],
+          ),
+        ),
+        bottomNavigationBar: CurvedNavigationBar(
+          color: Colors.grey,
+          backgroundColor: Colors.black38,
+          height: 55,
+          items: const <Widget>[
+            Icon(Icons.call),
+            Icon(Icons.attach_money),
+            Icon(Icons.person_outline),
+            Icon(Icons.favorite_border),
+          ],
+          onTap: (index) {
+            // Handle bottom navigation item tap
+          },
+        ),
+
       ),
     );
   }
 }
 
-class ProductCard extends StatelessWidget {
-  final String productName;
 
-  const ProductCard({required this.productName});
+
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final GlobalKey<ScaffoldState> scaffoldKey;
+
+  const CustomAppBar({
+    Key? key,
+    required this.scaffoldKey,
+    required this.preferredSize,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // Replace this with your product card design
-    return Card(
-      elevation: 3,
-      child: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Icon(Icons.shopping_cart, size: 50),
-            SizedBox(height: 8),
-            Text(
-              productName,
-              style: TextStyle(fontSize: 16),
-              textAlign: TextAlign.center,
+    return AppBar(
+      leading: Builder(
+        builder: (context) =>
+            IconButton(
+              onPressed: () {
+                scaffoldKey.currentState?.openDrawer();
+              },
+              icon: Icon(Icons.menu),
+              color: Colors.white,
             ),
-          ],
+      ),
+      backgroundColor: Colors.transparent,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(10),
+          bottomRight: Radius.circular(10),
+        ),
+      ),
+      title: Padding(
+        padding: const EdgeInsets.only(left: 30),
+        child: TextField(
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: "Tell us your dream",
+            hintStyle: TextStyle(
+              color: Colors.white,
+            ),
+          ),
         ),
       ),
     );
   }
+
+  @override
+  final Size preferredSize;
 }

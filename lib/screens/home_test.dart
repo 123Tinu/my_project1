@@ -194,38 +194,35 @@ class _HomePageTestState extends State<HomePageTest> {
               return Card(
                 elevation: 2,
                 color: Colors.white,
-                child: SizedBox(
-                  height: 800, // Set the height of the card
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                  Container(
-                    child: ClipRRect(
-                    //borderRadius: BorderRadius.circular(10), // Same border radius as Card
-                    child: Image.asset(
-                      shoeImages[index], // Cycle through the images
-                      height: 125,
-                      fit: BoxFit.cover, // Adjust the fit as needed
-                    ),
-
-                    ),
-                    width: MediaQuery.of(context).size.width,
-
-                    //height: MediaQuery.of(context).size.height,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                Container(
+                  child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10), // Same border radius as Card
+                  child: Image.asset(
+                    shoeImages[index], // Cycle through the images
+                    height: 100,
+                    fit: BoxFit.cover, // Adjust the fit as needed
                   ),
-                      SizedBox(height: 8), // Adjust spacing as needed
-                  SizedBox(height: 8),
-                  Text(
-                    shoeNames[index % shoeNames.length], // Cycle through the shoeNames list
                   ),
-                  Text(
-                    shoeName2[index % shoeName2.length], // Cycle through the shoeName2 list
-                  ),
-                  Text(
-                    shoePrice[index % shoePrice.length], // Cycle through the shoePrice list
-                  ),
-                    ],
-                  ),
+                  width: MediaQuery.of(context).size.width,
+                ),
+                    SizedBox(height: 8), // Adjust spacing as needed
+                SizedBox(height: 8),
+                Text(
+                  shoeNames[index % shoeNames.length],
+                  style: TextStyle(color: Colors.black),
+                ),
+                Text(
+                  shoeName2[index % shoeName2.length], // Cycle through the shoeName2 list
+                  style: TextStyle(color: Colors.black),
+                ),
+                Text(
+                  shoePrice[index % shoePrice.length], // Cycle through the shoePrice list
+                  style: TextStyle(color: Colors.black),
+                ),
+                  ],
                 ),
               );
             },

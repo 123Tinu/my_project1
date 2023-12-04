@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:my_project/screens/favorates.dart';
 import 'package:my_project/screens/home_page.dart';
+import 'package:my_project/screens/home_test.dart';
 import 'package:my_project/screens/navigation_bar.dart';
 import 'package:my_project/screens/splash_screen.dart';
 import 'package:my_project/screens/test.dart';
@@ -14,8 +16,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage(),
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+    return MaterialApp(
+      home: HomePageTest(),
     );
   }
 }

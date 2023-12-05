@@ -54,12 +54,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           CarouselSlider(
               items: productImages.map((item) {
                 return Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset(item,
-                        fit: BoxFit.cover,
-                        width: size.width,
-                        height: size.height),
+                  child: Image(
+                    image: AssetImage(productImages[currentIndex],
+                    ),
                   ),
                 );
               }).toList(),
@@ -75,26 +72,25 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   });
                 },
               )),
-
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: productImages.asMap().entries.map((entry) {
-          return GestureDetector(
-            onTap: () => carouselController.animateToPage(entry.key),
-            child: Container(
-              width: currentIndex == entry.key ? 17 : 7,
-              height: 7.0,
-              margin: const EdgeInsets.symmetric(
-                horizontal: 3.0,
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: currentIndex == entry.key ? Colors.red : Colors.grey,
-              ),
-            ),
-          );
-        }).toList(),
-      ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: productImages.asMap().entries.map((entry) {
+              return GestureDetector(
+                onTap: () => carouselController.animateToPage(entry.key),
+                child: Container(
+                  width: currentIndex == entry.key ? 17 : 7,
+                  height: 7.0,
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 3.0,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: currentIndex == entry.key ? Colors.red : Colors.grey,
+                  ),
+                ),
+              );
+            }).toList(),
+          ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Padding(
@@ -107,7 +103,6 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       onTap: () {
                         setState(() {
                           currentIndex = 0;
-
                         });
                       },
                       child: Padding(
@@ -117,8 +112,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           width: 80,
                           child: Card(
                             shape: RoundedRectangleBorder(
-                                borderRadius:
-                                BorderRadius.circular(20)),
+                                borderRadius: BorderRadius.circular(20)),
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(20),
                                 child: Image(
@@ -141,8 +135,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           width: 80,
                           child: Card(
                             shape: RoundedRectangleBorder(
-                                borderRadius:
-                                BorderRadius.circular(20)),
+                                borderRadius: BorderRadius.circular(20)),
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(20),
                                 child: Image(
@@ -166,8 +159,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           width: 80,
                           child: Card(
                             shape: RoundedRectangleBorder(
-                                borderRadius:
-                                BorderRadius.circular(20)),
+                                borderRadius: BorderRadius.circular(20)),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(20.0),
                               child: Image(
@@ -191,8 +183,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           width: 80,
                           child: Card(
                             shape: RoundedRectangleBorder(
-                                borderRadius:
-                                BorderRadius.circular(20)),
+                                borderRadius: BorderRadius.circular(20)),
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(20),
                                 child: Image(

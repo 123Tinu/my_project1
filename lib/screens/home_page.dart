@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    //  Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -437,43 +437,41 @@ class _HomePageState extends State<HomePage> {
       // ]
       //   ),
 
-      body: ListView(
-        children:[
-          SizedBox(
-            width: MediaQuery.of(context).size.height,
-            height: MediaQuery.of(context).size.width,
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 10.0,
-                mainAxisSpacing: 10.0,
-              ),
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: shoeNames.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Card(
-                  elevation: 2,
-                  color: Colors.white,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.asset(
-                          shoeImages[index],
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                          //height: 200,
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
+      body: ListView(children: [
+        SizedBox(
+          width: MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.width,
+          child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 10.0,
+              mainAxisSpacing: 10.0,
             ),
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: shoeNames.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Card(
+                elevation: 2,
+                color: Colors.white,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.asset(
+                        shoeImages[index],
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        //height: 200,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
-    ]
-      ),
+        ),
+      ]),
 
       // bottomNavigationBar: CurvedNavigationBar(
       //   color: Colors.black,

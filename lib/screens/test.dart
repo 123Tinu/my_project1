@@ -1,240 +1,537 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:my_project/screens/home_page.dart';
 
-class HomePage22 extends StatefulWidget {
-  const HomePage22({Key? key}) : super(key: key);
+class HinduPage1 extends StatefulWidget {
+  const HinduPage1({super.key});
 
   @override
-  State<HomePage22> createState() => _HomePage22State();
+  State<HinduPage1> createState() => _HinduPage1State();
 }
 
-class _HomePage22State extends State<HomePage22> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+class _HinduPage1State extends State<HinduPage1> {
+  List images = [
+    'assets/images1/nikepr1.webp',
+    'assets/images1/nikepr2.webp',
+    "assets/images1/nikepr3.webp",
+    "assets/images1/nikepr4.webp",
+  ];
+  int selectedImageIndex = 0;
 
-  final List<String> carName = [
-    'Jeep W186X LandSUV',
-    'LAND ROVER X800',
-    'Benz S Class 350CDI',
-    'AUDI Q5 40 TDI'
+  List images1 = [
+    'assets/images1/nikepr1.webp',
+    'assets/images1/nikepr2.webp',
+    "assets/images1/nikepr3.webp",
+    "assets/images1/nikepr4.webp",
   ];
-  final List<String> carImages = [
-    'assets/images/whitecar.jpg',
-    'assets/images/rangerover.jpg',
-    'assets/images/blackcar.jpg',
-    'assets/images/cargr.jpg'
-  ];
+  int selectedImageIndex1 = 0;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(backgroundColor: Colors.black,
-        key: _scaffoldKey,
-        appBar: CustomAppBar(
-          scaffoldKey: _scaffoldKey,
-          preferredSize: const Size.fromHeight(70),
-        ),
-        body:  ListView.builder(
-          itemCount: carName.length,
-          itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) =>
-                //     const Details(), // Details widget for car details
-                //   ),
-                // );
-              },
-              child: Card(
-                color: Colors.white70,
-                elevation: 8,
-                margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: Column(
-                  children: [
-                    ClipRRect(
-                      borderRadius:
-                      BorderRadius.vertical(top: Radius.circular(10)),
-                      child: SizedBox(
-                        height: 200,
-                        width: double.infinity,
-                        child: Image.asset(
-                          carImages[index],
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        carName[index],
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w900,
-                          fontSize: 20,
-                        ),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(Icons.calendar_today_rounded,
-                                  color: Colors.white70),
-                              Text(
-                                '2014',
-                                style: TextStyle(fontWeight: FontWeight.w900),
-                              )
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Icon(Icons.speed_rounded,
-                                  color: Color.fromARGB(1768, 255, 204, 0)),
-                              Text(
-                                '59000 KM',
-                                style: TextStyle(fontWeight: FontWeight.w900),
-                              )
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Icon(Icons.info_outline_rounded,
-                                  color: Colors.teal),
-                              Text(
-                                'Diesel',
-                                style: TextStyle(fontWeight: FontWeight.w900),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(Icons.currency_rupee),
-                              Text(
-                                '71,00,000',
-                                style: TextStyle(fontWeight: FontWeight.w900),
-                              )
-                            ],
-                          ),
-                          Icon(
-                            Icons.favorite_border,
-                            color: Color.fromARGB(000066, 0, 0, 102),
-                          )
-                        ],
-                      ),
-                    )
-                    // Other car details here
-                  ],
-                ),
-              ),
-            );
-          },
-        ),
-        drawer: Drawer(
+    Size size = MediaQuery.of(context).size;
+
+    return Scaffold(
+        backgroundColor: Colors.white,
+        body: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
           child: ListView(
-            padding: EdgeInsets.zero,
             children: [
-              DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                ),
-                child: Text('Drawer Header'),
-              ),
-              ListTile(
-                title: Text('Item 1'),
-                onTap: () {
-                  // Add functionality when Drawer item 1 is selected
-                },
-              ),
-              ListTile(
-                title: Text('Item 2'),
-                onTap: () {
-                  // Add functionality when Drawer item 2 is selected
-                },
-              ),
-              // Add more items as needed
+              Column(
+                children: [
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: SizedBox(
+                        width: 360,
+                        height: 330,
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image(
+                              image: AssetImage(images[selectedImageIndex]),
+                              fit: BoxFit.fill,
+                            )),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 360,
+                    height: 390,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(top: 10, left: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Stack(children: [
+
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 220),
+                                    child: Icon(Icons.currency_rupee_sharp),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 240),
+                                    child: Text(
+                                      "1,20,000",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  )
+                                ]),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                              padding: EdgeInsets.only(top: 8, left: 10),
+                              child: Stack(children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 170, right: 20),
+                                  child: Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        InkWell(
+                                          onTap: () {},
+                                          child: SizedBox(
+                                            width: 160,
+                                            height: 60,
+                                            child: Card(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                  BorderRadius.circular(
+                                                      15)),
+                                              color: Colors.black12,
+                                              elevation: 30,
+                                              child: const Center(
+                                                  child: Text("Call Now",
+                                                      style: TextStyle(
+                                                          fontSize: 22,
+                                                          color: Colors.black,
+                                                          fontWeight: FontWeight
+                                                              .w500))),
+                                            ),
+                                          ),
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            setState(() {
+                                              Navigator.push(context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) {
+                                                      return HomePage();
+                                                    },
+                                                  ));
+                                            });
+                                          },
+                                          child: SizedBox(
+                                            width: 160,
+                                            height: 60,
+                                            child: Card(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                  BorderRadius.circular(
+                                                      15)),
+                                              color: Colors.black12,
+                                              elevation: 30,
+                                              child: const Center(
+                                                  child: Text("Book Now",
+                                                      style: TextStyle(
+                                                          fontSize: 22,
+                                                          color: Colors.black,
+                                                          fontWeight: FontWeight
+                                                              .w500))),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                ),
+                              ]))
+                        ],
+                      ),
+                    ),
+                  ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 30, left: 10),
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 15),
+                        child: Row(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  selectedImageIndex = 0;
+                                });
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: SizedBox(
+                                  height: 80,
+                                  width: 80,
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(20)),
+                                    child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(20),
+                                        child: Image(
+                                            image: AssetImage(images[0]),
+                                            fit: BoxFit.fill)),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  selectedImageIndex = 1;
+                                });
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: SizedBox(
+                                  height: 80,
+                                  width: 80,
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(20)),
+                                    child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(20),
+                                        child: Image(
+                                          image: AssetImage(images[1]),
+                                          fit: BoxFit.fill,
+                                        )),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  selectedImageIndex = 2;
+                                });
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: SizedBox(
+                                  height: 80,
+                                  width: 80,
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(20)),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(20.0),
+                                      child: Image(
+                                          image: AssetImage(images[2]),
+                                          fit: BoxFit.cover),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  selectedImageIndex = 3;
+                                });
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: SizedBox(
+                                  height: 80,
+                                  width: 80,
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(20)),
+                                    child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(20),
+                                        child: Image(
+                                            image: AssetImage(images[3]),
+                                            fit: BoxFit.fill)),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: SizedBox(
+                        width: 360,
+                        height: 330,
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image(
+                              image: AssetImage(images1[selectedImageIndex1]),
+                              fit: BoxFit.fill,
+                            )),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 360,
+                    height: 390,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(top: 10, left: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Stack(children: [
+                                  Text("Description",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 25,
+                                      )),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 220),
+                                    child: Icon(Icons.currency_rupee),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 240),
+                                    child: Text("1,00,000",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 20)),
+                                  )
+                                ]),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 105,
+                            width: 415,
+                            child: Card(
+                              color: Colors.white54,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: const Center(
+                                child: Text(
+                                    "Though it’s the most important part of \na wedding day, "
+                                        "the ceremony is the space\nwhere your guests"
+                                        "will spend the least amount\nof time so this is not "
+                                        "the place to blow your budget.",
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.black)),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                              padding: EdgeInsets.only(top: 8, left: 10),
+                              child: Stack(children: [
+                                const Text(
+                                  "A tent for an outdoor wedding\n"
+                                      "Lighting\n"
+                                      "Draping\n"
+                                      "Dance floor\n"
+                                      "Hanging decor or installations such as chandeliers\n"
+                                      "Wedding hashtag signage\n"
+                                      "Bar decor\n"
+                                      "Dinner menus \n"
+                                      "Chair decor for the marrying couple\n"
+                                      "Lounge area\n",
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.black54,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 170, right: 20),
+                                  child: Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        InkWell(
+                                          onTap: () {},
+                                          child: SizedBox(
+                                            width: 160,
+                                            height: 60,
+                                            child: Card(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                  BorderRadius.circular(
+                                                      15)),
+                                              color: Colors.black12,
+                                              elevation: 30,
+                                              child: const Center(
+                                                  child: Text("Call Now",
+                                                      style: TextStyle(
+                                                          fontSize: 22,
+                                                          color: Colors.black,
+                                                          fontWeight: FontWeight
+                                                              .w500))),
+                                            ),
+                                          ),
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            setState(() {
+                                              Navigator.push(context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) {
+                                                      return HomePage();
+                                                    },
+                                                  ));
+                                            });
+                                          },
+                                          child: SizedBox(
+                                            width: 160,
+                                            height: 60,
+                                            child: Card(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                  BorderRadius.circular(
+                                                      15)),
+                                              color: Colors.black12,
+                                              elevation: 30,
+                                              child: const Center(
+                                                  child: Text("Book Now",
+                                                      style: TextStyle(
+                                                          fontSize: 22,
+                                                          color: Colors.black,
+                                                          fontWeight: FontWeight
+                                                              .w500))),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                ),
+                              ]))
+                        ],
+                      ),
+                    ),
+                  ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 30, left: 10),
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 15),
+                        child: Row(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  selectedImageIndex1 = 0;
+                                });
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: SizedBox(
+                                  height: 80,
+                                  width: 80,
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(20)),
+                                    child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(20),
+                                        child: Image(
+                                            image: AssetImage(images1[0]),
+                                            fit: BoxFit.fill)),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  selectedImageIndex1 = 1;
+                                });
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: SizedBox(
+                                  height: 80,
+                                  width: 80,
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(20)),
+                                    child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(20),
+                                        child: Image(
+                                          image: AssetImage(images1[1]),
+                                          fit: BoxFit.fill,
+                                        )),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  selectedImageIndex1 = 2;
+                                });
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: SizedBox(
+                                  height: 80,
+                                  width: 80,
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(20)),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(20.0),
+                                      child: Image(
+                                          image: AssetImage(images1[2]),
+                                          fit: BoxFit.cover),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  selectedImageIndex1 = 3;
+                                });
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: SizedBox(
+                                  height: 80,
+                                  width: 80,
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(20)),
+                                    child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(20),
+                                        child: Image(
+                                            image: AssetImage(images1[3]),
+                                            fit: BoxFit.fill)),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
-        ),
-        bottomNavigationBar: CurvedNavigationBar(
-          color: Colors.grey,
-          backgroundColor: Colors.black38,
-          height: 55,
-          items: const <Widget>[
-            Icon(Icons.call),
-            Icon(Icons.attach_money),
-            Icon(Icons.person_outline),
-            Icon(Icons.favorite_border),
-          ],
-          onTap: (index) {
-            // Handle bottom navigation item tap
-          },
-        ),
-
-      ),
-    );
+        ));
   }
-}
-
-
-
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final GlobalKey<ScaffoldState> scaffoldKey;
-
-  const CustomAppBar({
-    Key? key,
-    required this.scaffoldKey,
-    required this.preferredSize,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      leading: Builder(
-        builder: (context) =>
-            IconButton(
-              onPressed: () {
-                scaffoldKey.currentState?.openDrawer();
-              },
-              icon: Icon(Icons.menu),
-              color: Colors.white,
-            ),
-      ),
-      backgroundColor: Colors.transparent,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(10),
-          bottomRight: Radius.circular(10),
-        ),
-      ),
-      title: Padding(
-        padding: const EdgeInsets.only(left: 30),
-        child: TextField(
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: "Tell us your dream",
-            hintStyle: TextStyle(
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  @override
-  final Size preferredSize;
 }

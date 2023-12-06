@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_project/screens/forgot_password_page.dart';
 import 'package:my_project/screens/home_page.dart';
+import 'package:my_project/screens/main_page.dart';
 import 'package:my_project/screens/signup_page.dart';
 
 class Signin_Page extends StatefulWidget {
@@ -173,7 +174,7 @@ class _LoginPage1State extends State<Signin_Page> {
                               Navigator.pushReplacement(context,
                                   MaterialPageRoute(
                                 builder: (context) {
-                                  return const HomePage();
+                                  return const ManinPage();
                                 },
                               ));
                             });

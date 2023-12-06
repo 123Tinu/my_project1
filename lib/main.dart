@@ -3,10 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:my_project/screens/favorates.dart';
 import 'package:my_project/screens/home_page.dart';
 import 'package:my_project/screens/home_test.dart';
-import 'package:my_project/screens/navigation_bar.dart';
+import 'package:my_project/screens/main_page.dart';
 import 'package:my_project/screens/product_details_page.dart';
 import 'package:my_project/screens/splash_screen.dart';
-import 'package:my_project/screens/test.dart';
 
 main() {
   runApp(const MyApp());

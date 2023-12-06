@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:my_project/screens/home_test.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   const ProductDetailsPage({super.key});
@@ -20,7 +21,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     "assets/images1/nikepr5.webp",
     "assets/images1/nikepr6.webp"
   ];
-  List<String> sizes = ['6', '7', '8', '9', '10'];
+  List<String> sizes = ['6', '7', '8', '9', '10', "11"];
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +29,47 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.black,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, size: 30, color: Colors.black),
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const HomePageTest();
+            }));
+          },
+        ),
+        actions: [
+          Container(
+            margin: const EdgeInsets.all(10),
+            width: 320,
+            height: 80,
+            decoration: BoxDecoration(
+              color: Colors.grey[200],
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: TextField(
+                decoration: const InputDecoration(
+                  hintText: 'Search',
+                  border: InputBorder.none,
+                  icon: Icon(Icons.search, size: 25, color: Colors.black),
+                ),
+                onChanged: (value) {
+                  // Handle search text changes
+                },
+              ),
+            ),
+          ),
+          IconButton(
+            icon:
+                const Icon(Icons.shopping_cart, size: 30, color: Colors.black),
+            onPressed: () {
+              // Handle "Add to Cart" icon tapped
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -38,23 +77,61 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             SizedBox(
               height: 10,
             ),
-            Align(
-              alignment: Alignment(-0.96, 0),
-              child: Text("Nike",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 30,
-                    color: Colors.black,
-                  )),
+            Row(
+              children: [
+                SizedBox(
+                  width: 5,
+                ),
+                Text("Nike",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20,
+                      color: Colors.black,
+                    )),
+              ],
             ),
-            Align(
-              alignment: Alignment(-0.95, 0),
-              child: Text("Nike Air Force 1 '07",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w300,
-                    color: Colors.black,
-                  )),
+            Row(
+              children: [
+                SizedBox(
+                  width: 5,
+                ),
+                Text("Nike Air Force 1 '07",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.black,
+                    )),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 5,
+                ),
+                Icon(
+                  Icons.star,
+                  color: Colors.orangeAccent,
+                ),
+                Icon(
+                  Icons.star,
+                  color: Colors.orangeAccent,
+                ),
+                Icon(
+                  Icons.star,
+                  color: Colors.orangeAccent,
+                ),
+                Icon(
+                  Icons.star_half,
+                  color: Colors.orangeAccent,
+                ),
+                Icon(
+                  Icons.star_border,
+                  color: Colors.orangeAccent,
+                ),
+              ],
             ),
             SizedBox(
               height: 10,
@@ -301,25 +378,42 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           },
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: selectedSizeIndex == index
-                                    ? Colors.blue
-                                    : Colors.grey[300],
-                                borderRadius: BorderRadius.circular(25.0),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  sizes[index],
-                                  style: TextStyle(
-                                    color: selectedSizeIndex == index
-                                        ? Colors.white
-                                        : Colors.black,
-                                    fontSize: 16.0,
+                            child: Stack(
+                              children: [
+                                Container(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.circular(25.0),
+                                  ),
+                                  child: Center(
+                                    child: Container(
+                                      width: 48.0,
+                                      height: 48.0,
+                                      decoration: BoxDecoration(
+                                        color: selectedSizeIndex == index
+                                            ? Colors.red
+                                            : Colors.white,
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          textAlign: TextAlign.center,
+                                          sizes[index],
+                                          style: TextStyle(
+                                            color: selectedSizeIndex == index
+                                                ? Colors.white
+                                                : Colors.black,
+                                            fontSize: 16.0,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              width: 50.0,
+                              ],
                             ),
                           ),
                         );
@@ -328,6 +422,22 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   ),
                 ],
               ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 5,
+                ),
+                Text("Product Details",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20,
+                      color: Colors.black,
+                    )),
+              ],
             ),
           ],
         ),

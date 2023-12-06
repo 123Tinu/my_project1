@@ -13,6 +13,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   CarouselController carouselController = CarouselController();
   int currentIndex = 0;
   int selectedSizeIndex = -1;
+  bool isFavorite = false;
   final List<String> productImages = [
     'assets/images1/nikepr1.webp',
     'assets/images1/nikepr2.webp',
@@ -90,6 +91,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     )),
               ],
             ),
+            SizedBox(
+              height: 2,
+            ),
             Row(
               children: [
                 SizedBox(
@@ -104,7 +108,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               ],
             ),
             SizedBox(
-              height: 10,
+              height: 2,
             ),
             Row(
               children: [
@@ -136,7 +140,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             SizedBox(
               height: 10,
             ),
-            CarouselSlider(
+            Stack(alignment: Alignment.topRight, children: [
+              CarouselSlider(
                 items: productImages.map((item) {
                   return Center(
                     child: Image(
@@ -157,7 +162,21 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       currentIndex = index;
                     });
                   },
-                )),
+                ),
+              ),
+              IconButton(
+                icon: Icon(
+                  isFavorite ? Icons.favorite : Icons.favorite_border,
+                  size: 30,
+                  color: Colors.redAccent,
+                ),
+                onPressed: () {
+                  setState(() {
+                    isFavorite = !isFavorite;
+                  });
+                },
+              ),
+            ]),
             SizedBox(
               height: 10,
             ),
@@ -344,7 +363,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   )),
             ),
             SizedBox(
-              height: 25,
+              height: 10,
             ),
             Align(
               alignment: Alignment(-0.95, 0),
@@ -355,11 +374,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     color: Colors.black,
                   )),
             ),
-            SizedBox(
-              height: 10,
-            ),
             Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -439,8 +455,44 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     )),
               ],
             ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                  "The radiance lives on in the Nike Air Force 1 '07, the basketball original that puts a fresh spin on what you know best: durably stitched overlays, clean finishes and the perfect amount of flash to make you shine.",
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w300,
+                    color: Colors.black,
+                  )),
+            ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Container(
+            width: 216,
+            height: 55,
+            color: Colors.white,
+            child: TextButton(
+                onPressed: () {},
+                child: const Text(
+                  "Add to cart",
+                  style: TextStyle(color: Colors.black, fontSize: 23),
+                )),
+          ),
+          Container(
+            width: 216,
+            height: 55,
+            color: Colors.black,
+            child: TextButton(
+                onPressed: () {},
+                child: const Text(
+                  "Buy now",
+                  style: TextStyle(color: Colors.white, fontSize: 23),
+                )),
+          ),
+        ]),
       ),
     );
   }

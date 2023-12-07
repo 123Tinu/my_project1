@@ -74,7 +74,7 @@ class _MainPageState extends State<MainPage> {
                     setState(() {
                       Navigator.push(context, MaterialPageRoute(
                         builder: (context) {
-                          return const HomePage();
+                          return const MainPage();
                         },
                       ));
                     });

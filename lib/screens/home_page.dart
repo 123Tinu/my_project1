@@ -50,6 +50,32 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        actions: [
+          Container(
+            margin: const EdgeInsets.all(10),
+            width: 400,
+            height: 80,
+            decoration: BoxDecoration(
+              color: Colors.grey[200],
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: TextField(
+                decoration: const InputDecoration(
+                  hintText: 'Search',
+                  border: InputBorder.none,
+                  icon: Icon(Icons.search, size: 25, color: Colors.black),
+                ),
+                onChanged: (value) {},
+              ),
+            ),
+          ),
+        ],
+      ),
       body: ListView(children: [
         Column(children: [
           SizedBox(
@@ -243,15 +269,15 @@ class _HomePageState extends State<HomePage> {
             height: 10,
           ),
           Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(5.0),
             child: SizedBox(
               width: MediaQuery.of(context).size.height,
               height: MediaQuery.of(context).size.width,
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 10.0,
-                  mainAxisSpacing: 10.0,
+                  crossAxisSpacing: 5.0,
+                  mainAxisSpacing: 5.0,
                 ),
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: shoeNames.length,
@@ -275,7 +301,7 @@ class _HomePageState extends State<HomePage> {
                                   top: Radius.circular(10)),
                               child: SizedBox(
                                 width: double.infinity,
-                                height: 115,
+                                height: 130,
                                 child: Image.asset(
                                   shoeImages[index],
                                   fit: BoxFit.cover,

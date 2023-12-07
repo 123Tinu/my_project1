@@ -6,14 +6,14 @@ import 'package:my_project/screens/profile_page.dart';
 import 'package:my_project/screens/settings_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
-class HomePageTest extends StatefulWidget {
-  const HomePageTest({super.key});
+class HomeTestPage extends StatefulWidget {
+  const HomeTestPage({super.key});
 
   @override
-  State<HomePageTest> createState() => _HomePageTestState();
+  State<HomeTestPage> createState() => _HomeTestPageState();
 }
 
-class _HomePageTestState extends State<HomePageTest> {
+class _HomeTestPageState extends State<HomeTestPage> {
   final List<String> shoeNames = [
     'Nike',
     'Adidas Originals',
@@ -50,6 +50,32 @@ class _HomePageTestState extends State<HomePageTest> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        actions: [
+          Container(
+            margin: const EdgeInsets.all(10),
+            width: 400,
+            height: 80,
+            decoration: BoxDecoration(
+              color: Colors.grey[200],
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: TextField(
+                decoration: const InputDecoration(
+                  hintText: 'Search',
+                  border: InputBorder.none,
+                  icon: Icon(Icons.search, size: 25, color: Colors.black),
+                ),
+                onChanged: (value) {},
+              ),
+            ),
+          ),
+        ],
+      ),
       body: ListView(children: [
         Column(children: [
           SizedBox(
@@ -112,7 +138,7 @@ class _HomePageTestState extends State<HomePageTest> {
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: currentIndex == entry.key ? Colors.red : Colors.teal,
+                    color: currentIndex == entry.key ? Colors.red : Colors.grey,
                   ),
                 ),
               );
@@ -243,15 +269,15 @@ class _HomePageTestState extends State<HomePageTest> {
             height: 10,
           ),
           Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(5.0),
             child: SizedBox(
               width: MediaQuery.of(context).size.height,
               height: MediaQuery.of(context).size.width,
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 10.0,
-                  mainAxisSpacing: 10.0,
+                  crossAxisSpacing: 5.0,
+                  mainAxisSpacing: 5.0,
                 ),
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: shoeNames.length,
@@ -275,7 +301,7 @@ class _HomePageTestState extends State<HomePageTest> {
                                   top: Radius.circular(10)),
                               child: SizedBox(
                                 width: double.infinity,
-                                height: 115,
+                                height: 130,
                                 child: Image.asset(
                                   shoeImages[index],
                                   fit: BoxFit.cover,

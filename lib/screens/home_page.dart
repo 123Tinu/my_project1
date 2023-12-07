@@ -50,31 +50,32 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        actions: [
-          Container(
-            margin: const EdgeInsets.all(10),
-            width: 400,
-            height: 80,
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: TextField(
-                decoration: const InputDecoration(
-                  hintText: 'Search',
-                  border: InputBorder.none,
-                  icon: Icon(Icons.search, size: 25, color: Colors.black),
-                ),
-                onChanged: (value) {},
+        centerTitle: true, // Center the title (in this case, the TextField)
+        title: Container(
+          alignment: Alignment.center,
+          margin: const EdgeInsets.all(10),
+          width: size.width,
+          height: 40,
+          decoration: BoxDecoration(
+            color: Colors.grey[200],
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: TextField(
+              decoration: const InputDecoration(
+                hintText: 'Search',
+                border: InputBorder.none,
+                icon: Icon(Icons.search, size: 25, color: Colors.black),
               ),
+              onChanged: (value) {},
             ),
           ),
-        ],
+        ),
       ),
       body: ListView(children: [
         Column(children: [

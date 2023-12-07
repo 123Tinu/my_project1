@@ -12,7 +12,7 @@ class _SettingsState extends State<Settings> {
   bool switch1 = false;
   bool switch2 = false;
 
-  String dropDownbutton1 = "English";
+  String dropDownButton1 = "English";
   var languages = ["English", "Malayalam", "Tamil", "hindi"];
 
   @override
@@ -20,10 +20,10 @@ class _SettingsState extends State<Settings> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 255, 214, 247),
+          backgroundColor: Colors.black,
           title: const Text(
             "Settings",
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.white),
           ),
         ),
         body: SingleChildScrollView(
@@ -59,14 +59,18 @@ class _SettingsState extends State<Settings> {
                 ),
                 Card(
                   child: ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      setState(() {
+                        switch1=!switch1;
+                      });
+                    },
                     leading: const Icon(
                       Icons.notifications,
                       size: 25,
                     ),
                     title: const Text("Notifications"),
                     trailing: Switch(
-                      activeColor: const Color.fromARGB(255, 255, 214, 247),
+                      activeColor: Colors.black,
                       value: switch1,
                       onChanged: (value) {
                         setState(() {
@@ -78,14 +82,18 @@ class _SettingsState extends State<Settings> {
                 ),
                 Card(
                   child: ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      setState(() {
+                        switch2=!switch2;
+                      });
+                    },
                     leading: const Icon(
                       Icons.light_mode_outlined,
                       size: 25,
                     ),
                     title: const Text("Dark/Light"),
                     trailing: Switch(
-                      activeColor: const Color.fromARGB(255, 255, 214, 247),
+                      activeColor: Colors.black,
                       value: switch2,
                       onChanged: (value) {
                         setState(() {
@@ -104,14 +112,14 @@ class _SettingsState extends State<Settings> {
                       ),
                       title: const Text("Language"),
                       trailing: DropdownButton(
-                        value: dropDownbutton1,
+                        value: dropDownButton1,
                         items: languages.map((String items) {
                           return DropdownMenuItem(
                               value: items, child: Text(items));
                         }).toList(),
                         onChanged: (String? newValue) {
                           setState(() {
-                            dropDownbutton1 = newValue!;
+                            dropDownButton1 = newValue!;
                           });
                         },
                       )),

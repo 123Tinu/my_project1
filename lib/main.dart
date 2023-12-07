@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_project/screens/favorates.dart';
+import 'package:my_project/screens/bottom_navigation_bar.dart';
+import 'package:my_project/screens/favorites.dart';
 import 'package:my_project/screens/home_page.dart';
-import 'package:my_project/screens/home_test.dart';
 import 'package:my_project/screens/main_page.dart';
 import 'package:my_project/screens/product_details_page.dart';
 import 'package:my_project/screens/splash_screen.dart';
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     return MaterialApp(
-      home: ProductDetailsPage(),
+      home: BottomNavigationBar1(),
     );
   }
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:my_project/screens/home_test.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:my_project/screens/bottom_navigation_bar.dart';
+
+import 'home_page.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   const ProductDetailsPage({super.key});
@@ -12,6 +15,7 @@ class ProductDetailsPage extends StatefulWidget {
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
   CarouselController carouselController = CarouselController();
   int currentIndex = 0;
+  final cartKey = GlobalKey<FormState>();
   int selectedSizeIndex = -1;
   bool isFavorite = false;
   final List<String> productImages = [
@@ -36,7 +40,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           icon: const Icon(Icons.arrow_back, size: 30, color: Colors.black),
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const HomePageTest();
+              return const BottomNavigationBar1();
             }));
           },
         ),
@@ -409,7 +413,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                       height: 48.0,
                                       decoration: BoxDecoration(
                                         color: selectedSizeIndex == index
-                                            ? Colors.red
+                                            ? Colors.grey
                                             : Colors.white,
                                         borderRadius:
                                             BorderRadius.circular(25.0),
@@ -475,7 +479,17 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             height: 55,
             color: Colors.white,
             child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Fluttertoast.showToast(
+                      msg: "Added To Cart",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.TOP,
+                      timeInSecForIosWeb: 1,
+                      textColor: Colors.white,
+                      fontSize: 16.0,
+                    backgroundColor: Colors.grey,
+                  );
+                },
                 child: const Text(
                   "Add to cart",
                   style: TextStyle(color: Colors.black, fontSize: 23),

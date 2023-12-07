@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:my_project/screens/profile_page.dart';
 import 'package:my_project/screens/settings_page.dart';
 import 'cart.dart';
@@ -14,170 +15,144 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  final _advancedDrawerController = AdvancedDrawerController();
+
+  @override
+  void dispose() {
+    _advancedDrawerController.dispose();
+    super.dispose();
+  }
+
+  _handleMenuButtonPressed() {
+    _advancedDrawerController.showDrawer();
+  }
+
   int currentSelectedIndex = 0;
   static final List pages = [HomePage(), favorites(), Cart(), Settings()];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.black,
-      ),
-      drawer: SafeArea(
-        child: Drawer(
-          shape: const OutlineInputBorder(
-              borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(40),
-                  topRight: Radius.circular(40))),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 10,
-              ),
-              const Center(
-                child: Stack(children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.black,
-                    radius: 60,
-                    child: CircleAvatar(
-                      radius: 70,
-                      backgroundImage: AssetImage(
-                        'assets/images1/propic2.jpg',
-                      ),
-                    ),
-                  ),
-                ]),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Text(
-                "Tinu",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30),
-              ),
-              const Text(
-                "tinu@gmail.com",
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Card(
-                child: ListTile(
-                  leading: const Icon(Icons.home),
-                  onTap: () {
-                    setState(() {
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) {
-                          return const MainPage();
-                        },
-                      ));
-                    });
-                  },
-                  title: const Text(
-                    "Home",
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ),
-              ),
-              Card(
-                elevation: 5,
-                child: ListTile(
-                  leading: const Icon(Icons.account_box),
-                  onTap: () {
-                    setState(() {
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) {
-                          return const ProfilePage();
-                        },
-                      ));
-                    });
-                  },
-                  title: const Text(
-                    "Accounts",
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ),
-              ),
-              Card(
-                child: ListTile(
-                  leading: const Icon(Icons.shopping_cart),
-                  onTap: () {},
-                  title: const Text(
-                    "My Orders",
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ),
-              ),
-              Card(
-                child: ListTile(
-                  leading: const Icon(Icons.settings),
-                  onTap: () {
-                    setState(() {
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) {
-                          return const Settings();
-                        },
-                      ));
-                    });
-                  },
-                  title: const Text(
-                    "Settings",
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ),
-              ),
-              Card(
-                child: ListTile(
-                  leading: const Icon(Icons.logout),
-                  onTap: () {},
-                  title: const Text(
-                    "Logout",
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ),
-              ),
-            ],
+    return AdvancedDrawer(
+        backdrop: Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Colors.blueGrey, Colors.blueGrey.withOpacity(0.2)],
+            ),
           ),
         ),
-      ),
-      body: pages[currentSelectedIndex],
-      bottomNavigationBar: CurvedNavigationBar(
-        color: Colors.black,
-        backgroundColor: Colors.transparent,
-        items: const <Widget>[
-          Icon(
-            color: Colors.white,
-            Icons.home,
-            size: 30,
+        controller: _advancedDrawerController,
+        animationCurve: Curves.easeInOut,
+        animationDuration: const Duration(milliseconds: 300),
+        animateChildDecoration: true,
+        rtlOpening: false,
+        disabledGestures: false,
+        childDecoration: const BoxDecoration(
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 0.0,
+            ),
+          ],
+          borderRadius: BorderRadius.all(Radius.circular(16)),
+        ),
+        drawer: SafeArea(
+          child: ListTileTheme(
+            textColor: Colors.white,
+            iconColor: Colors.white,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                const SizedBox(height: 50),
+                ListTile(
+                  onTap: () {},
+                  leading: const Icon(Icons.home),
+                  title: const Text('Home'),
+                ),
+                ListTile(
+                  onTap: () {},
+                  leading: const Icon(Icons.account_circle_rounded),
+                  title: const Text('Profile'),
+                ),
+                ListTile(
+                  onTap: () {},
+                  leading: const Icon(Icons.favorite),
+                  title: const Text('Favourites'),
+                ),
+                ListTile(
+                  onTap: () {},
+                  leading: const Icon(Icons.settings),
+                  title: const Text('Settings'),
+                ),
+                const Spacer(),
+                DefaultTextStyle(
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: Colors.white54,
+                  ),
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(
+                      vertical: 16.0,
+                    ),
+                    child: const Text('Terms of Service | Privacy Policy'),
+                  ),
+                ),
+              ],
+            ),
           ),
-          Icon(
-            color: Colors.white,
-            Icons.favorite,
-            size: 30,
+        ),
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            elevation: 0,
+            iconTheme: const IconThemeData(
+              color: Colors.black,
+            ),
+            toolbarHeight: 65.0,
+            leading: Builder(
+              builder: (BuildContext context) {
+                return IconButton(
+                  icon: const Icon(Icons.menu),
+                  onPressed: _handleMenuButtonPressed,
+                );
+              },
+            ),
           ),
-          Icon(
-            Icons.shopping_cart,
-            size: 30,
-            color: Colors.white,
+          body: pages[currentSelectedIndex],
+          bottomNavigationBar: CurvedNavigationBar(
+            color: Colors.black,
+            backgroundColor: Colors.transparent,
+            items: const <Widget>[
+              Icon(
+                color: Colors.white,
+                Icons.home,
+                size: 30,
+              ),
+              Icon(
+                color: Colors.white,
+                Icons.favorite,
+                size: 30,
+              ),
+              Icon(
+                Icons.shopping_cart,
+                size: 30,
+                color: Colors.white,
+              ),
+              Icon(
+                Icons.settings,
+                size: 30,
+                color: Colors.white,
+              ),
+            ],
+            onTap: (index) {
+              setState(() {
+                currentSelectedIndex = index;
+              });
+            },
           ),
-          Icon(
-            Icons.settings,
-            size: 30,
-            color: Colors.white,
-          ),
-        ],
-        onTap: (index) {
-          setState(() {
-            currentSelectedIndex = index;
-          });
-        },
-      ),
-    );
+        ));
   }
 }

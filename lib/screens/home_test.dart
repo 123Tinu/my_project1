@@ -1,18 +1,19 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:my_project/screens/main_page.dart';
+import 'package:my_project/screens/product_details_page.dart';
 import 'package:my_project/screens/profile_page.dart';
 import 'package:my_project/screens/settings_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
-class HomeTestPage extends StatefulWidget {
-  const HomeTestPage({super.key});
+class HomePageTest extends StatefulWidget {
+  const HomePageTest({super.key});
 
   @override
-  State<HomeTestPage> createState() => _HomeTestPageState();
+  State<HomePageTest> createState() => _HomePageTestState();
 }
 
-class _HomeTestPageState extends State<HomeTestPage> {
+class _HomePageTestState extends State<HomePageTest> {
   final List<String> shoeNames = [
     'Nike',
     'Adidas Originals',
@@ -49,131 +50,6 @@ class _HomeTestPageState extends State<HomeTestPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.white),
-      ),
-      drawer: Drawer(
-        shape: const OutlineInputBorder(
-            borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(40),
-                topRight: Radius.circular(40))),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 10,
-            ),
-            const Center(
-              child: Stack(children: [
-                CircleAvatar(
-                  backgroundColor: Colors.black,
-                  radius: 60,
-                  child: CircleAvatar(
-                    radius: 70,
-                    backgroundImage: AssetImage(
-                      'assets/images1/propic2.jpg',
-                    ),
-                  ),
-                ),
-              ]),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Text(
-              "Tinu",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30),
-            ),
-            const Text(
-              "tinu@gmail.com",
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            Card(
-              child: ListTile(
-                leading: const Icon(Icons.home),
-                onTap: () {
-                  setState(() {
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) {
-                        return const HomeTestPage();
-                      },
-                    ));
-                  });
-                },
-                title: const Text(
-                  "Home",
-                  style: TextStyle(fontSize: 20),
-                ),
-              ),
-            ),
-            Card(
-              elevation: 5,
-              child: ListTile(
-                leading: const Icon(Icons.account_box),
-                onTap: () {
-                  setState(() {
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) {
-                        return const ProfilePage();
-                      },
-                    ));
-                  });
-                },
-                title: const Text(
-                  "Accounts",
-                  style: TextStyle(fontSize: 20),
-                ),
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: const Icon(Icons.shopping_cart),
-                onTap: () {},
-                title: const Text(
-                  "My Orders",
-                  style: TextStyle(fontSize: 20),
-                ),
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: const Icon(Icons.settings),
-                onTap: () {
-                  setState(() {
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) {
-                        return const Settings();
-                      },
-                    ));
-                  });
-                },
-                title: const Text(
-                  "Settings",
-                  style: TextStyle(fontSize: 20),
-                ),
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: const Icon(Icons.logout),
-                onTap: () {},
-                title: const Text(
-                  "Logout",
-                  style: TextStyle(fontSize: 20),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
       body: ListView(children: [
         Column(children: [
           SizedBox(
@@ -380,54 +256,65 @@ class _HomeTestPageState extends State<HomeTestPage> {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: shoeNames.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return Card(
-                    elevation: 2,
-                    color: Colors.white,
-                    child: Column(
-                      children: [
-                        ClipRRect(
-                          borderRadius:
-                              BorderRadius.vertical(top: Radius.circular(10)),
-                          child: SizedBox(
-                            width: double.infinity,
-                            height: 115,
-                            child: Image.asset(
-                              shoeImages[index],
-                              fit: BoxFit.cover,
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return ProductDetailsPage();
+                        },
+                      ));
+                    },
+                    child: Card(
+                      elevation: 2,
+                      color: Colors.white,
+                      child: SizedBox(
+                        child: Column(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(10)),
+                              child: SizedBox(
+                                width: double.infinity,
+                                height: 115,
+                                child: Image.asset(
+                                  shoeImages[index],
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
-                          ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              shoeNames[index],
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 18,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 2,
+                            ),
+                            Text(
+                              shoeName2[index],
+                              style: const TextStyle(
+                                color: Colors.black87,
+                                fontSize: 15,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 2,
+                            ),
+                            Text(
+                              shoePrice[index],
+                              style: const TextStyle(
+                                color: Colors.black87,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          shoeNames[index],
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          shoeName2[index],
-                          style: const TextStyle(
-                            color: Colors.black87,
-                            fontSize: 15,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          shoePrice[index],
-                          style: const TextStyle(
-                            color: Colors.black87,
-                            fontSize: 15,
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   );
                 },

@@ -19,13 +19,6 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.black,
-          title: const Text(
-            "Settings",
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(15.0),
@@ -61,7 +54,7 @@ class _SettingsState extends State<Settings> {
                   child: ListTile(
                     onTap: () {
                       setState(() {
-                        switch1=!switch1;
+                        switch1 = !switch1;
                       });
                     },
                     leading: const Icon(
@@ -84,7 +77,7 @@ class _SettingsState extends State<Settings> {
                   child: ListTile(
                     onTap: () {
                       setState(() {
-                        switch2=!switch2;
+                        switch2 = !switch2;
                       });
                     },
                     leading: const Icon(

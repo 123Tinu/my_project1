@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:my_project/screens/bottom_navigation_bar.dart';
+import 'package:my_project/screens/main_page.dart';
 
 import 'home_page.dart';
 
@@ -40,7 +40,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           icon: const Icon(Icons.arrow_back, size: 30, color: Colors.black),
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const BottomNavigationBar1();
+              return const MainPage();
             }));
           },
         ),
@@ -61,9 +61,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   border: InputBorder.none,
                   icon: Icon(Icons.search, size: 25, color: Colors.black),
                 ),
-                onChanged: (value) {
-                  // Handle search text changes
-                },
+                onChanged: (value) {},
               ),
             ),
           ),
@@ -481,12 +479,12 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             child: TextButton(
                 onPressed: () {
                   Fluttertoast.showToast(
-                      msg: "Added To Cart",
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.TOP,
-                      timeInSecForIosWeb: 1,
-                      textColor: Colors.white,
-                      fontSize: 16.0,
+                    msg: "Added To Cart",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.TOP,
+                    timeInSecForIosWeb: 1,
+                    textColor: Colors.white,
+                    fontSize: 16.0,
                     backgroundColor: Colors.grey,
                   );
                 },

@@ -14,6 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String title= "Settings";
   final List<String> shoeNames = [
     'Nike',
     'Adidas Originals',

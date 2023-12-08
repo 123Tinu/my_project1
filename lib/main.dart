@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_project/screens/drawer.dart';
 import 'package:my_project/screens/main_page.dart';
 import 'package:my_project/screens/favorites.dart';
 import 'package:my_project/screens/home_page.dart';
 import 'package:my_project/screens/main_page.dart';
 import 'package:my_project/screens/product_details_page.dart';
 import 'package:my_project/screens/splash_screen.dart';
+import 'package:my_project/screens/testpage.dart';
 
 main() {
   runApp(const MyApp());
@@ -19,8 +19,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-    return const MaterialApp(
-      home: MainPage1(),
+    return MaterialApp(
+      home: MainPage(),
     );
   }
 }

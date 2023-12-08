@@ -9,6 +9,7 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  String title= "Settings";
   bool switch1 = false;
   bool switch2 = false;
 

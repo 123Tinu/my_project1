@@ -174,7 +174,7 @@ class _LoginPage1State extends State<Signin_Page> {
                               Navigator.pushReplacement(context,
                                   MaterialPageRoute(
                                 builder: (context) {
-                                  return const MainPage();
+                                  return const MainPage1();
                                 },
                               ));
                             });

@@ -40,7 +40,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           icon: const Icon(Icons.arrow_back, size: 30, color: Colors.black),
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const MainPage();
+              return const MainPage1();
             }));
           },
         ),

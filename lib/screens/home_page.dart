@@ -55,7 +55,6 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        centerTitle: true, // Center the title (in this case, the TextField)
         title: Container(
           alignment: Alignment.center,
           margin: const EdgeInsets.all(10),

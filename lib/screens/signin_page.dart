@@ -171,12 +171,9 @@ class _LoginPage1State extends State<Signin_Page> {
                             );
 
                             setState(() {
-                              Navigator.pushReplacement(context,
-                                  MaterialPageRoute(
-                                builder: (context) {
-                                  return const MainPage();
-                                },
-                              ));
+                              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
+                                return MainPage();
+                              },), (route) => false);
                             });
                           }
                         },

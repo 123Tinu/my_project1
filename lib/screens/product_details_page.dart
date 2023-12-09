@@ -34,40 +34,36 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.black
+        ),
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, size: 30, color: Colors.black),
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const MainPage();
-            }));
-          },
-        ),
-        actions: [
-          Container(
-            margin: const EdgeInsets.all(10),
-            width: 320,
-            height: 80,
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: TextField(
-                decoration: const InputDecoration(
-                  hintText: 'Search',
-                  border: InputBorder.none,
-                  icon: Icon(Icons.search, size: 25, color: Colors.black),
-                ),
-                onChanged: (value) {},
+        title: Container(
+          alignment: Alignment.center,
+          margin: const EdgeInsets.all(10),
+          width: size.width,
+          height: 40,
+          decoration: BoxDecoration(
+            color: Colors.grey[200],
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: TextField(
+              decoration: const InputDecoration(
+                hintText: 'Search',
+                border: InputBorder.none,
+                icon: Icon(Icons.search, size: 25, color: Colors.black),
               ),
+              onChanged: (value) {},
             ),
           ),
+        ),
+        actions: [
           IconButton(
             icon:
-                const Icon(Icons.shopping_cart, size: 30, color: Colors.black),
+            const Icon(Icons.shopping_cart, size: 30, color: Colors.black),
             onPressed: () {
               // Handle "Add to Cart" icon tapped
             },

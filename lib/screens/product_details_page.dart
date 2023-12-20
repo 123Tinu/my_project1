@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:my_project/screens/main_page.dart';
 
 import 'home_page.dart';
 
@@ -16,6 +15,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   CarouselController carouselController = CarouselController();
   int currentIndex = 0;
   final cartKey = GlobalKey<FormState>();
+  List<String> sizes = ['6', '7', '8', '9', '10', "11"];
   int selectedSizeIndex = -1;
   bool isFavorite = false;
   final List<String> productImages = [
@@ -26,11 +26,11 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     "assets/images1/nikepr5.webp",
     "assets/images1/nikepr6.webp"
   ];
-  List<String> sizes = ['6', '7', '8', '9', '10', "11"];
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    double halfWidth = MediaQuery.of(context).size.width / 2;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -407,7 +407,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                       height: 48.0,
                                       decoration: BoxDecoration(
                                         color: selectedSizeIndex == index
-                                            ? Colors.grey
+                                            ? Colors.red
                                             : Colors.white,
                                         borderRadius:
                                             BorderRadius.circular(25.0),
@@ -467,9 +467,10 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        child: Row(mainAxisAlignment: MainAxisAlignment.center,
+            children: [
           Container(
-            width: 216,
+            width: halfWidth,
             height: 55,
             color: Colors.white,
             child: TextButton(
@@ -490,7 +491,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 )),
           ),
           Container(
-            width: 216,
+            width: halfWidth,
             height: 55,
             color: Colors.black,
             child: TextButton(

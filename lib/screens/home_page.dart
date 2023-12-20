@@ -5,6 +5,8 @@ import 'package:my_project/screens/product_details_page.dart';
 import 'package:my_project/screens/profile_page.dart';
 import 'package:my_project/screens/settings_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:my_project/screens/widget/banner-widget.dart';
+import 'package:my_project/screens/widget/product-list-widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,7 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String title= "Settings";
+  String title = "Settings";
   final List<String> shoeNames = [
     'Nike',
     'Adidas Originals',
@@ -39,7 +41,6 @@ class _HomePageState extends State<HomePage> {
     "assets/images1/nikejordhan.webp",
     "assets/images1/newbalance2.webp"
   ];
-  CarouselController carouselController = CarouselController();
   int currentIndex = 0;
   final List<String> imgList = [
     'assets/images1/bg1.jpeg',
@@ -93,59 +94,11 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: CarouselSlider(
-                items: imgList.map((item) {
-                  return SizedBox(
-                    width: double.infinity,
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.asset(item,
-                            fit: BoxFit.cover,
-                            width: double.infinity,
-                            height: 500),
-                      ),
-                    ),
-                  );
-                }).toList(),
-                options: CarouselOptions(
-                  scrollPhysics: const BouncingScrollPhysics(),
-                  autoPlay: true,
-                  aspectRatio: 2.0,
-                  viewportFraction: 1,
-                  autoPlayAnimationDuration: Duration(seconds: 2),
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      currentIndex = index;
-                    });
-                  },
-                )),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: imgList.asMap().entries.map((entry) {
-              return GestureDetector(
-                onTap: () => carouselController.animateToPage(entry.key),
-                child: Container(
-                  width: currentIndex == entry.key ? 17 : 7,
-                  height: 7.0,
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 3.0,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: currentIndex == entry.key ? Colors.red : Colors.grey,
-                  ),
-                ),
-              );
-            }).toList(),
-          ),
-          SizedBox(
+          const BannerWidget(),
+          const SizedBox(
             height: 5,
           ),
           Align(
@@ -270,83 +223,8 @@ class _HomePageState extends State<HomePage> {
             height: 10,
           ),
           Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.height,
-              height: MediaQuery.of(context).size.width,
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 5.0,
-                  mainAxisSpacing: 5.0,
-                ),
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: shoeNames.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) {
-                          return ProductDetailsPage();
-                        },
-                      ));
-                    },
-                    child: Card(
-                      elevation: 2,
-                      color: Colors.white,
-                      child: SizedBox(
-                        child: Column(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(10)),
-                              child: SizedBox(
-                                width: double.infinity,
-                                height: 130,
-                                child: Image.asset(
-                                  shoeImages[index],
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              shoeNames[index],
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 2,
-                            ),
-                            Text(
-                              shoeName2[index],
-                              style: const TextStyle(
-                                color: Colors.black87,
-                                fontSize: 15,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 2,
-                            ),
-                            Text(
-                              shoePrice[index],
-                              style: const TextStyle(
-                                color: Colors.black87,
-                                fontSize: 15,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
+            padding: const EdgeInsets.all(8.0),
+            child: GetProductWidget(),
           )
         ]),
       ]),

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "791215412256",
+    "project_id": "shoekeeper-dac52",
+    "storage_bucket": "shoekeeper-dac52.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791215412256:android:16782ecb8b574e2d555845",
+        "android_client_info": {
+          "package_name": "com.project.my_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAraGcCYUJuzWXiOnQ0d7P9LFQtxngl-Ws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

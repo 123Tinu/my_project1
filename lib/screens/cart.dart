@@ -72,9 +72,7 @@ class _CartState extends State<Cart> {
                             fontSize: 18,
                           ),
                         ),
-                        const SizedBox(
-                            height: 5
-                        ),
+                        const SizedBox(height: 5),
                         Text(
                           shoePrice[index],
                           style: const TextStyle(

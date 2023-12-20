@@ -34,9 +34,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: Colors.black
-        ),
+        iconTheme: IconThemeData(color: Colors.black),
         elevation: 0,
         backgroundColor: Colors.white,
         title: Container(
@@ -63,7 +61,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         actions: [
           IconButton(
             icon:
-            const Icon(Icons.shopping_cart, size: 30, color: Colors.black),
+                const Icon(Icons.shopping_cart, size: 30, color: Colors.black),
             onPressed: () {
               // Handle "Add to Cart" icon tapped
             },
@@ -467,8 +465,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        child: Row(mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Container(
             width: halfWidth,
             height: 55,

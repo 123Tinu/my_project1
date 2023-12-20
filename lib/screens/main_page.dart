@@ -110,10 +110,8 @@ class _MainPageState extends State<MainPage> {
             centerTitle: true,
             title: Text(
               titles[currentSelectedIndex],
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold
-              ),
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
             ),
             backgroundColor: Colors.white,
             elevation: 0,

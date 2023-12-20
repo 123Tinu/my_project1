@@ -5,8 +5,9 @@ import 'package:my_project/screens/product_details_page.dart';
 import 'package:my_project/screens/profile_page.dart';
 import 'package:my_project/screens/settings_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:my_project/screens/widget/banner-widget.dart';
-import 'package:my_project/screens/widget/product-list-widget.dart';
+
+import '../widget/banner-widget.dart';
+import '../widget/product-list-widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

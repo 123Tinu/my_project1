@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_project/screens/widget/banner-widget.dart';
+
+import '../widget/banner-widget.dart';
+
 class TestPage extends StatefulWidget {
   const TestPage({super.key});
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_project/controller/google_signin_controller.dart';
 import 'package:my_project/screens/forgot_password_page.dart';
-import 'package:my_project/screens/home_page.dart';
 import 'package:my_project/screens/main_page.dart';
 import 'package:my_project/screens/signup_page.dart';
 
@@ -17,6 +17,7 @@ class _LoginPage1State extends State<Signin_Page> {
   var passController = TextEditingController();
   bool passwordVisible = false;
   var passwordController = TextEditingController();
+  GoogleSignInController googleSignInController = GoogleSignInController();
 
   @override
   Widget build(BuildContext context) {
@@ -228,7 +229,11 @@ class _LoginPage1State extends State<Signin_Page> {
                       width: 70,
                       height: 70,
                       child: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              googleSignInController.signInWithGoogle();
+                            });
+                          },
                           icon: const Image(
                               image: AssetImage('assets/images1/google.png'))),
                     ),

@@ -5,7 +5,7 @@ import 'package:my_project/screens/profile_page.dart';
 import 'package:my_project/screens/settings_page.dart';
 import 'cart.dart';
 import 'favorites.dart';
-import 'home_page.dart';
+import '../pages/home_page.dart';
 
 class Drawer1 extends StatefulWidget {
   const Drawer1({super.key});

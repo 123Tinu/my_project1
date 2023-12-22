@@ -5,6 +5,7 @@ import 'package:my_project/screens/product_details_page.dart';
 import 'package:my_project/screens/profile_page.dart';
 import 'package:my_project/screens/settings_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:my_project/widget/category-widget.dart';
 
 import '../widget/banner-widget.dart';
 import '../widget/product-list-widget.dart';
@@ -59,7 +60,6 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
         title: Container(
           alignment: Alignment.center,
-          margin: const EdgeInsets.all(10),
           width: size.width,
           height: 40,
           decoration: BoxDecoration(
@@ -79,8 +79,8 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: ListView(children: [
-        Column(children: [
+      body: SingleChildScrollView(
+        child: Column(children: [
           SizedBox(
             height: 10,
           ),
@@ -96,11 +96,11 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           const SizedBox(
-            height: 5,
+            height: 15,
           ),
           const BannerWidget(),
           const SizedBox(
-            height: 5,
+            height: 10,
           ),
           Align(
             alignment: Alignment(-0.96, 0),
@@ -116,96 +116,7 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: 10,
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      CircleAvatar(
-                          backgroundColor: Colors.grey,
-                          radius: 40,
-                          backgroundImage:
-                              AssetImage("assets/images1/nike.jpeg")),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text("Nike")
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      CircleAvatar(
-                          backgroundColor: Colors.grey,
-                          radius: 40,
-                          backgroundImage:
-                              AssetImage("assets/images1/adidas.jpeg")),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text("Adidas"),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      CircleAvatar(
-                          backgroundColor: Colors.grey,
-                          radius: 40,
-                          backgroundImage:
-                              AssetImage("assets/images1/puma.jpeg")),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text("Puma")
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        child: CircleAvatar(
-                          backgroundColor: Colors.grey,
-                          radius: 40,
-                          backgroundImage:
-                              AssetImage("assets/images1/newbalance.jpeg"),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text("New Balance")
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      CircleAvatar(
-                          backgroundColor: Colors.grey,
-                          radius: 40,
-                          backgroundImage:
-                              AssetImage("assets/images1/converse.jpeg")),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text("Converse")
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
+          CategoryWidget(),
           SizedBox(
             height: 10,
           ),
@@ -223,12 +134,12 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: 10,
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GetProductWidget(),
-          )
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: GetProductWidget(),
+          // )
         ]),
-      ]),
+      ),
     );
   }
 }

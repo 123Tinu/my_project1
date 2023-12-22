@@ -4,8 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import '../../Controller/banners-controller.dart';
+import '../Controller/banners-controller.dart';
 
 class BannerWidget extends StatefulWidget {
   const BannerWidget({super.key});
@@ -15,41 +14,81 @@ class BannerWidget extends StatefulWidget {
 }
 
 class _BannerWidgetState extends State<BannerWidget> {
+  int currentIndex = 0;
   final CarouselController carouselController = CarouselController();
   final BannerController _bannerController = Get.put(BannerController());
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Obx(() {
-        return CarouselSlider(
-          items: _bannerController.bannerUrls
-              .map(
-                (imageUrls) => ClipRRect(
-                  borderRadius: BorderRadius.circular(10.0).r,
-                  child: CachedNetworkImage(
-                    imageUrl: imageUrls,
-                    fit: BoxFit.cover,
-                    width: Get.width - 10.w,
-                    placeholder: (context, url) => ColoredBox(
-                      color: Colors.white,
-                      child: Center(
-                        child: CupertinoActivityIndicator(),
+    return Column(
+      children: [
+        Obx(() {
+          return CarouselSlider(
+            items: _bannerController.bannerUrls
+                .map(
+                  (imageUrls) => ClipRRect(
+                    borderRadius: BorderRadius.circular(10.0).r,
+                    child: CachedNetworkImage(
+                      imageUrl: imageUrls,
+                      fit: BoxFit.cover,
+                      width: Get.width - 10.w,
+                      placeholder: (context, url) => const ColoredBox(
+                        color: Colors.white,
+                        child: Center(
+                          child: CupertinoActivityIndicator(),
+                        ),
                       ),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
                     ),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ),
+                )
+                .toList(),
+            options: CarouselOptions(
+              height: 200,
+              enableInfiniteScroll: true,
+              autoPlay: true,
+              autoPlayInterval: const Duration(seconds: 4),
+              autoPlayAnimationDuration: const Duration(milliseconds: 800),
+              pauseAutoPlayOnTouch: true,
+              aspectRatio: 2.5,
+              viewportFraction: 1,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  currentIndex = index;
+                });
+              },
+            ),
+          );
+        }),
+        const SizedBox(
+          height: 15,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: _bannerController.bannerUrls
+              .asMap()
+              .entries
+              .map(
+                (entry) => GestureDetector(
+                  onTap: () => carouselController.animateToPage(entry.key),
+                  child: Container(
+                    width: currentIndex == entry.key ? 17 : 7,
+                    height: 7.0,
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 3.0,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color:
+                          currentIndex == entry.key ? Colors.red : Colors.grey,
+                    ),
                   ),
                 ),
               )
               .toList(),
-          options: CarouselOptions(
-            scrollDirection: Axis.horizontal,
-            autoPlay: true,
-            aspectRatio: 2.5,
-            viewportFraction: 1,
-          ),
-        );
-      }),
+        ),
+      ],
     );
   }
 }

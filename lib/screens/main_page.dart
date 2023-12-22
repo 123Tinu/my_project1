@@ -4,7 +4,7 @@ import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:my_project/screens/settings_page.dart';
 import 'cart.dart';
 import 'favorites.dart';
-import 'home_page.dart';
+import '../pages/home_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});

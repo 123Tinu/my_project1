@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:my_project/screens/signin_page.dart';
+
+import '../controller/email-sign-in-controller.dart';
+import 'email_validation.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -9,11 +14,12 @@ class SignupPage extends StatefulWidget {
 }
 
 class _LoginPage1State extends State<SignupPage> {
+  final EmailPassController _emailPassController =
+  Get.put(EmailPassController());
   final loginkey = GlobalKey<FormState>();
   var name = TextEditingController();
   var emailController = TextEditingController();
   var password = TextEditingController();
-  var confirm_password = TextEditingController();
   bool passwordVisible = false;
   bool passVisible = false;
 
@@ -158,45 +164,6 @@ class _LoginPage1State extends State<SignupPage> {
                   ),
                 ),
                 const SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white70,
-                        border: const OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
-                            borderSide: BorderSide(color: Colors.black)),
-                        hintText: "Confirm Password",
-                        hintStyle: const TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold),
-                        prefixIcon: const Icon(
-                          Icons.lock,
-                        ),
-                        suffixIcon: IconButton(
-                            onPressed: () {
-                              setState(() {
-                                passVisible = !passVisible;
-                              });
-                            },
-                            icon: Icon(passVisible
-                                ? Icons.visibility
-                                : Icons.visibility_off))),
-                    controller: confirm_password,
-                    obscureText: !passVisible,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Re-enter your password";
-                      } else if (value != password.text) {
-                        return "Password Must Be Same";
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                const SizedBox(
                   height: 20,
                 ),
                 Padding(
@@ -208,11 +175,30 @@ class _LoginPage1State extends State<SignupPage> {
                     width: 200,
                     height: 55,
                     child: TextButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (loginkey.currentState!.validate()) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text("Saving Data")),
-                            );
+                            try {
+                              await _emailPassController.signupUser(
+                                emailController.text,
+                                password.text,
+                                name.text,
+                              );
+                              if (_emailPassController.currentUser !=
+                                  null) {
+                                Get.off(
+                                        () => EmailValidationScreen(
+                                        user: _emailPassController
+                                            .currentUser!),
+                                    transition:
+                                    Transition.leftToRightWithFade);
+                              } else {
+                                // No user is currently authenticated
+                                Get.snackbar('No user is',
+                                    'currently authenticated');
+                              }
+                            } catch (e) {
+                              Get.snackbar('Error', e.toString());
+                            }
                           }
                         },
                         child: const Text(

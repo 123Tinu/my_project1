@@ -2,10 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:my_project/pages/home_page.dart';
 import 'package:my_project/screens/front_page.dart';
 
 import '../../Controller/email-validation-controller.dart';
-import 'home_test.dart';
 
 
 class EmailValidationScreen extends StatefulWidget {
@@ -157,7 +157,7 @@ class _EmailValidationScreenState extends State<EmailValidationScreen> {
                       if (user != null && user.emailVerified) {
                         Get.snackbar('Success : ',
                             'Email has been verified successfully');
-                        Get.off(const HomeTestPage(),
+                        Get.off(const HomePage(),
                             transition: Transition.leftToRightWithFade);
                       } else {
                         Get.snackbar('Failed : ',

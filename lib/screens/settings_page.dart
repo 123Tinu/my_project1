@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_project/controller/google_signin_controller.dart';
 import 'package:my_project/screens/profile_page.dart';
 
 class Settings extends StatefulWidget {
@@ -9,6 +10,7 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  final GoogleSignInController googleSignInController=GoogleSignInController();
   String title = "Settings";
   bool switch1 = false;
   bool switch2 = false;
@@ -140,7 +142,9 @@ class _SettingsState extends State<Settings> {
                 ),
                 Card(
                   child: ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      googleSignInController.signOutGoogle();
+                    },
                     leading: const Icon(
                       Icons.logout,
                       size: 25,

@@ -1,8 +1,11 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
-import 'package:my_project/screens/profile_page.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:my_project/screens/settings_page.dart';
+import '../controller/get-user-data-controller.dart';
 import 'cart.dart';
 import 'favorites.dart';
 import '../pages/home_page.dart';
@@ -16,6 +19,9 @@ class Drawer1 extends StatefulWidget {
 
 class _Drawer1State extends State<Drawer1> {
   final _advancedDrawerController = AdvancedDrawerController();
+  final GetUserDataController _getUserDataController =
+  Get.put(GetUserDataController());
+  User? user = FirebaseAuth.instance.currentUser;
 
   @override
   void dispose() {

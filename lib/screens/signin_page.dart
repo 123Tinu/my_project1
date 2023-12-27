@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_project/controller/google_signin_controller.dart';
 import 'package:my_project/screens/forgot_password_page.dart';
 import 'package:my_project/screens/main_page.dart';
 import 'package:my_project/screens/signup_page.dart';
+import '../controller/email-sign-in-controller.dart';
 
 class Signin_Page extends StatefulWidget {
   const Signin_Page({super.key});
@@ -12,13 +14,17 @@ class Signin_Page extends StatefulWidget {
 }
 
 class _LoginPage1State extends State<Signin_Page> {
-  final loginkey = GlobalKey<FormState>();
-  var emailController = TextEditingController();
-  var passController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  final _emailTextController = TextEditingController();
+  final _passwordTextController = TextEditingController();
+  get passwordTextController => _passwordTextController;
   bool passwordVisible = false;
-  var passwordController = TextEditingController();
+  get emailTextController => _emailTextController;
+  final EmailPassController _emailPassController =
+  Get.put(EmailPassController());
+  final GoogleSignInController _googleSignInController =
+  Get.put(GoogleSignInController());
   GoogleSignInController googleSignInController = GoogleSignInController();
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -26,7 +32,7 @@ class _LoginPage1State extends State<Signin_Page> {
         backgroundColor: const Color.fromARGB(255, 255, 214, 247),
         body: SingleChildScrollView(
           child: Form(
-            key: loginkey,
+            key: _formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -93,7 +99,7 @@ class _LoginPage1State extends State<Signin_Page> {
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: TextFormField(
-                    controller: passwordController,
+                    controller: _emailTextController,
                     obscureText: !passwordVisible,
                     decoration: InputDecoration(
                         filled: true,
@@ -166,7 +172,7 @@ class _LoginPage1State extends State<Signin_Page> {
                     height: 55,
                     child: TextButton(
                         onPressed: () {
-                          if (loginkey.currentState!.validate()) {
+                          if (_formKey.currentState!.validate()) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(content: Text("Success")),
                             );

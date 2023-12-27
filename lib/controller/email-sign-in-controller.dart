@@ -1,21 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-
+import 'package:my_project/screens/front_page.dart';
 import '../model/user-model.dart';
-import '../screens/front_page.dart';
 import 'get-device-token-controller.dart';
-
-
 
 class EmailPassController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  RxBool passwordVisible = true.obs;
+  RxBool loading = false.obs;
+
+  void updateLoading() {
+    loading.toggle();
+  }
+
+  void updateVisibility() {
+    passwordVisible.toggle(); // Use toggle method to toggle the value
+  }
 
   FirebaseAuth get auth => _auth;
 
   Future<void> signupUser(String email, String password, String name) async {
     final GetDeviceTokenController getDeviceTokenController =
-    Get.put(GetDeviceTokenController());
+        Get.put(GetDeviceTokenController());
     try {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
@@ -63,6 +70,7 @@ class EmailPassController extends GetxController {
   }
 
   User? get currentUser => _auth.currentUser;
+
   Future<UserCredential?> signinUser(
       String userEmail, String userPassword) async {
     try {
@@ -83,9 +91,9 @@ class EmailPassController extends GetxController {
     }
   }
 
-  Future<void> ForgetPasswordMethod(
-      String userEmail,
-      ) async {
+  Future<void> forgotPassword(
+    String userEmail,
+  ) async {
     try {
       await _auth.sendPasswordResetEmail(email: userEmail);
       Get.snackbar(
@@ -93,8 +101,7 @@ class EmailPassController extends GetxController {
         "Password reset link sent to $userEmail",
         snackPosition: SnackPosition.TOP,
       );
-      Get.off(const FrontPage(),
-          transition: Transition.leftToRightWithFade);
+      Get.off(const FrontPage(), transition: Transition.leftToRightWithFade);
     } on FirebaseAuthException catch (e) {
       Get.snackbar(
         "Error",

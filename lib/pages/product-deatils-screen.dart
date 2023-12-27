@@ -38,7 +38,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             padding: const EdgeInsets.all(3.0),
             child: Container(
               alignment: Alignment.center,
-              width: 320,
+              width: double.infinity,
               decoration: BoxDecoration(
                 color: Colors.grey[200],
                 borderRadius: BorderRadius.circular(10),

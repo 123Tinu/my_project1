@@ -83,7 +83,7 @@ class _GetProductWidgetState extends State<GetProductWidget> {
                                   top: Radius.circular(10)),
                               child: SizedBox(
                                 width: double.infinity,
-                                height: 130,
+                                height: 90,
                                 child: Image.network(
                                   "${productModel.productImages[0]}",
                                   fit: BoxFit.cover,

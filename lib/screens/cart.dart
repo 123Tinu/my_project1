@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swipe_action_cell/core/cell.dart';
 import 'package:get/get.dart';
 import '../../controller/cart-price-controller.dart';
@@ -25,21 +24,6 @@ class _CartState extends State<Cart> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 2,
-          leading: IconButton(
-              onPressed: () => Get.offAll(() => const MainPage(),
-                  transition: Transition.leftToRightWithFade),
-              icon: const Icon(CupertinoIcons.back, color: Colors.white)),
-          centerTitle: true,
-          title: Text("Cart page",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.sp,
-                fontFamily: 'Roboto-Regular',
-              )),
-        ),
         body: Container(
           width: Get.width,
           height: Get.height,
@@ -57,7 +41,7 @@ class _CartState extends State<Cart> {
                   builder: (BuildContext context,
                       AsyncSnapshot<QuerySnapshot> snapshot) {
                     if (snapshot.hasError) {
-                      return Text(
+                      return const Text(
                         "Error",
                         style: TextStyle(
                             fontSize: 20, fontFamily: 'Roboto-Regular'),
@@ -128,89 +112,96 @@ class _CartState extends State<Cart> {
                                   },
                                 )
                               ],
-                              child: Card(
-                                elevation: 5,
-                                color: Colors.white,
-                                child: ListTile(
-                                  leading: CircleAvatar(
-                                    backgroundColor: Colors.white,
-                                    backgroundImage: NetworkImage(
-                                        cartModel.productImages[0]),
-                                  ),
-                                  title: Text(cartModel.productName),
-                                  subtitle: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Text(
-                                          "Price : ${cartModel.productTotalPrice.toString()}"),
-                                      Row(
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () async {
-                                              if (cartModel.productQuantity >
-                                                  1) {
-                                                await FirebaseFirestore.instance
-                                                    .collection('cart')
-                                                    .doc(user!.uid)
-                                                    .collection('cartOrders')
-                                                    .doc(cartModel.productId)
-                                                    .update({
-                                                  'productQuantity': cartModel
-                                                          .productQuantity -
-                                                      1,
-                                                  'productTotalPrice': (double
-                                                          .parse(cartModel
-                                                              .fullPrice) *
-                                                      (cartModel
-                                                              .productQuantity -
-                                                          1))
-                                                });
-                                              }
-                                            },
-                                            child: const CircleAvatar(
-                                              radius: 14.0,
-                                              backgroundColor: Colors.black,
-                                              child: Text('-'),
+                              child: SizedBox(
+                                height: 200,
+                                child: Card(
+                                  elevation: 5,
+                                  color: Colors.white,
+                                  child: ListTile(
+                                    leading: SizedBox(
+                                      width: 100,
+                                      height: 100,
+                                      child: Image(
+                                          image: NetworkImage(
+                                              cartModel.productImages[0])),
+                                    ),
+                                    title: Text(cartModel.productName),
+                                    subtitle: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text(
+                                            "Price : ${cartModel.productTotalPrice.toString()}"),
+                                        Row(
+                                          children: [
+                                            GestureDetector(
+                                              onTap: () async {
+                                                if (cartModel.productQuantity >
+                                                    1) {
+                                                  await FirebaseFirestore
+                                                      .instance
+                                                      .collection('cart')
+                                                      .doc(user!.uid)
+                                                      .collection('cartOrders')
+                                                      .doc(cartModel.productId)
+                                                      .update({
+                                                    'productQuantity': cartModel
+                                                            .productQuantity -
+                                                        1,
+                                                    'productTotalPrice': (double
+                                                            .parse(cartModel
+                                                                .fullPrice) *
+                                                        (cartModel
+                                                                .productQuantity -
+                                                            1))
+                                                  });
+                                                }
+                                              },
+                                              child: const CircleAvatar(
+                                                radius: 14.0,
+                                                backgroundColor: Colors.black,
+                                                child: Text('-'),
+                                              ),
                                             ),
-                                          ),
-                                          SizedBox(
-                                            width: Get.width / 20.0,
-                                          ),
-                                          GestureDetector(
-                                            onTap: () async {
-                                              if (cartModel.productQuantity >
-                                                  0) {
-                                                await FirebaseFirestore.instance
-                                                    .collection('cart')
-                                                    .doc(user!.uid)
-                                                    .collection('cartOrders')
-                                                    .doc(cartModel.productId)
-                                                    .update({
-                                                  'productQuantity': cartModel
-                                                          .productQuantity +
-                                                      1,
-                                                  'productTotalPrice': double
-                                                          .parse(cartModel
-                                                              .fullPrice) +
-                                                      double.parse(cartModel
-                                                              .fullPrice) *
-                                                          (cartModel
-                                                              .productQuantity)
-                                                });
-                                              }
-                                            },
-                                            child: CircleAvatar(
-                                              radius: 14.0,
-                                              backgroundColor: Colors.red,
-                                              child: Text('+'),
+                                            SizedBox(
+                                              width: Get.width / 20.0,
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                      Text(
-                                          "Quantity : ${cartModel.productQuantity}")
-                                    ],
+                                            GestureDetector(
+                                              onTap: () async {
+                                                if (cartModel.productQuantity >
+                                                    0) {
+                                                  await FirebaseFirestore
+                                                      .instance
+                                                      .collection('cart')
+                                                      .doc(user!.uid)
+                                                      .collection('cartOrders')
+                                                      .doc(cartModel.productId)
+                                                      .update({
+                                                    'productQuantity': cartModel
+                                                            .productQuantity +
+                                                        1,
+                                                    'productTotalPrice': double
+                                                            .parse(cartModel
+                                                                .fullPrice) +
+                                                        double.parse(cartModel
+                                                                .fullPrice) *
+                                                            (cartModel
+                                                                .productQuantity)
+                                                  });
+                                                }
+                                              },
+                                              child: const CircleAvatar(
+                                                radius: 14.0,
+                                                backgroundColor: Colors.red,
+                                                child: Text('+'),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Text(
+                                            "Quantity : ${cartModel.productQuantity}")
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -226,14 +217,14 @@ class _CartState extends State<Cart> {
               ]),
         ),
         bottomNavigationBar: Container(
-          margin: EdgeInsets.only(bottom: 5.0),
+          margin: const EdgeInsets.only(bottom: 5.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Obx(
                 () => Text(
                   " Total ₹ : ${_productPriceController.totalPrice.value.toStringAsFixed(1)} rs",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
@@ -261,7 +252,7 @@ class _CartState extends State<Cart> {
                             'Empty Cart',
                             'Your cart is empty. Add some items to proceed to checkout.',
                             snackPosition: SnackPosition.BOTTOM,
-                            duration: Duration(seconds: 3),
+                            duration: const Duration(seconds: 3),
                           );
                         }
                       },

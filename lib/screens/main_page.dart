@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
+import 'package:my_project/screens/cart2.dart';
 import 'package:my_project/screens/settings_page.dart';
 import 'cart.dart';
 import 'favorites.dart';
@@ -28,7 +29,7 @@ class _MainPageState extends State<MainPage> {
   }
 
   int currentSelectedIndex = 0;
-  static final List pages = [HomePage(), favorites(), Cart(), Settings()];
+  static final List pages = [HomePage(), favorites(), Cart2(), Settings()];
   var titles = ["Home", "Favorites", "Cart", "Settings"];
 
   @override

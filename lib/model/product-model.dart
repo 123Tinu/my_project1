@@ -2,6 +2,7 @@ class ProductModel {
   final String productId;
   final String categoryId;
   final String productName;
+  final String productName2;
   final String categoryName;
   final String salePrice;
   final String fullPrice;
@@ -16,6 +17,7 @@ class ProductModel {
     required this.productId,
     required this.categoryId,
     required this.productName,
+    required this.productName2,
     required this.categoryName,
     required this.salePrice,
     required this.fullPrice,
@@ -32,6 +34,7 @@ class ProductModel {
       'productId': productId,
       'categoryId': categoryId,
       'productName': productName,
+      'productName2': productName2,
       'categoryName': categoryName,
       'salePrice': salePrice,
       'fullPrice': fullPrice,
@@ -49,6 +52,7 @@ class ProductModel {
       productId: json['productId'],
       categoryId: json['categoryId'],
       productName: json['productName'],
+      productName2: json['productName2'],
       categoryName: json['categoryName'],
       salePrice: json['salePrice'],
       fullPrice: json['fullPrice'],

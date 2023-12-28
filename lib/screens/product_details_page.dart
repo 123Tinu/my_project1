@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../pages/home_page.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   const ProductDetailsPage({super.key});
@@ -13,6 +14,7 @@ class ProductDetailsPage extends StatefulWidget {
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
   CarouselController carouselController = CarouselController();
   int currentIndex = 0;
+  final cartKey = GlobalKey<FormState>();
   List<String> sizes = ['6', '7', '8', '9', '10', "11"];
   int selectedSizeIndex = -1;
   bool isFavorite = false;

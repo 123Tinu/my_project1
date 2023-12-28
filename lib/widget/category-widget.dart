@@ -122,9 +122,8 @@ class CategoryWidget extends StatefulWidget {
 }
 
 class _CategoryWidgetState extends State<CategoryWidget> {
-
-  final CategoryDataController _categoryDataController = Get.put(CategoryDataController());
-
+  final CategoryDataController _categoryDataController =
+      Get.put(CategoryDataController());
 
   @override
   Widget build(BuildContext context) {
@@ -175,31 +174,30 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                                     child: CachedNetworkImage(
                                       imageUrl: categoryModel.categoryImg,
                                       fit: BoxFit.cover,
-                                      placeholder: (context, url) => const ColoredBox(
+                                      placeholder: (context, url) =>
+                                          const ColoredBox(
                                         color: Colors.white,
                                         child: Center(
                                           child: CupertinoActivityIndicator(),
                                         ),
                                       ),
-                                      errorWidget: (context, url, error) => const Icon(Icons.error),
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error),
                                     ),
                                   ),
                                 ),
-                                Text(
-                                    categoryModel.categoryName,
+                                Text(categoryModel.categoryName,
                                     textAlign: TextAlign.center,
-                                    style:
-                                    const TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 13,
-                                      color: Colors.black,)
-                                )
+                                      color: Colors.black,
+                                    ))
                               ],
                             ),
                           ),
                         ],
                       ),
-                    )
-                );
+                    ));
               },
             ),
           );

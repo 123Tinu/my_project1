@@ -17,7 +17,8 @@ class _SplashScreenState extends State<SplashScreen>
     _animationController.forward();
     _animationController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => FrontPage()));
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => FrontPage()));
       }
     });
   }
@@ -36,7 +37,8 @@ class _SplashScreenState extends State<SplashScreen>
         child: ScaleTransition(
           scale: _animationController,
           child: SvgPicture.asset(
-            "assets/images1/Shoekeeper_Logo.png", // Replace this with your SVG file path
+            "assets/images1/Shoekeeper_Logo.png",
+            // Replace this with your SVG file path
             height: 150,
             width: 150,
           ),

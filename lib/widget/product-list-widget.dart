@@ -57,7 +57,6 @@ class _GetProductWidgetState extends State<GetProductWidget> {
                     productId: productData['productId'],
                     categoryId: productData['categoryId'],
                     productName: productData['productName'],
-                    productName2: productData['productName2'],
                     categoryName: productData['categoryName'],
                     salePrice: productData['salePrice'].toString(),
                     fullPrice: productData['fullPrice'].toString(),

@@ -17,14 +17,17 @@ class _LoginPage1State extends State<Signin_Page> {
   final _formKey = GlobalKey<FormState>();
   final _emailTextController = TextEditingController();
   final _passwordTextController = TextEditingController();
+
   get passwordTextController => _passwordTextController;
   bool passwordVisible = false;
+
   get emailTextController => _emailTextController;
   final EmailPassController _emailPassController =
-  Get.put(EmailPassController());
+      Get.put(EmailPassController());
   final GoogleSignInController _googleSignInController =
-  Get.put(GoogleSignInController());
+      Get.put(GoogleSignInController());
   GoogleSignInController googleSignInController = GoogleSignInController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

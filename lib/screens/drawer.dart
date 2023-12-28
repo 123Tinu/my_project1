@@ -20,7 +20,7 @@ class Drawer1 extends StatefulWidget {
 class _Drawer1State extends State<Drawer1> {
   final _advancedDrawerController = AdvancedDrawerController();
   final GetUserDataController _getUserDataController =
-  Get.put(GetUserDataController());
+      Get.put(GetUserDataController());
   User? user = FirebaseAuth.instance.currentUser;
 
   @override

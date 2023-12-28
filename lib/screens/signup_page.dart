@@ -15,7 +15,7 @@ class SignupPage extends StatefulWidget {
 
 class _LoginPage1State extends State<SignupPage> {
   final EmailPassController _emailPassController =
-  Get.put(EmailPassController());
+      Get.put(EmailPassController());
   final loginkey = GlobalKey<FormState>();
   var name = TextEditingController();
   var emailController = TextEditingController();
@@ -183,18 +183,16 @@ class _LoginPage1State extends State<SignupPage> {
                                 password.text,
                                 name.text,
                               );
-                              if (_emailPassController.currentUser !=
-                                  null) {
+                              if (_emailPassController.currentUser != null) {
                                 Get.off(
-                                        () => EmailValidationScreen(
-                                        user: _emailPassController
-                                            .currentUser!),
-                                    transition:
-                                    Transition.leftToRightWithFade);
+                                    () => EmailValidationScreen(
+                                        user:
+                                            _emailPassController.currentUser!),
+                                    transition: Transition.leftToRightWithFade);
                               } else {
                                 // No user is currently authenticated
-                                Get.snackbar('No user is',
-                                    'currently authenticated');
+                                Get.snackbar(
+                                    'No user is', 'currently authenticated');
                               }
                             } catch (e) {
                               Get.snackbar('Error', e.toString());

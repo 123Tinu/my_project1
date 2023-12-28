@@ -10,7 +10,8 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  final GoogleSignInController googleSignInController=GoogleSignInController();
+  final GoogleSignInController googleSignInController =
+      GoogleSignInController();
   String title = "Settings";
   bool switch1 = false;
   bool switch2 = false;

@@ -112,96 +112,89 @@ class _CartState extends State<Cart> {
                                   },
                                 )
                               ],
-                              child: SizedBox(
-                                height: 200,
-                                child: Card(
-                                  elevation: 5,
-                                  color: Colors.white,
-                                  child: ListTile(
-                                    leading: SizedBox(
-                                      width: 100,
-                                      height: 100,
-                                      child: Image(
-                                          image: NetworkImage(
-                                              cartModel.productImages[0])),
-                                    ),
-                                    title: Text(cartModel.productName),
-                                    subtitle: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        Text(
-                                            "Price : ${cartModel.productTotalPrice.toString()}"),
-                                        Row(
-                                          children: [
-                                            GestureDetector(
-                                              onTap: () async {
-                                                if (cartModel.productQuantity >
-                                                    1) {
-                                                  await FirebaseFirestore
-                                                      .instance
-                                                      .collection('cart')
-                                                      .doc(user!.uid)
-                                                      .collection('cartOrders')
-                                                      .doc(cartModel.productId)
-                                                      .update({
-                                                    'productQuantity': cartModel
-                                                            .productQuantity -
-                                                        1,
-                                                    'productTotalPrice': (double
-                                                            .parse(cartModel
-                                                                .fullPrice) *
-                                                        (cartModel
-                                                                .productQuantity -
-                                                            1))
-                                                  });
-                                                }
-                                              },
-                                              child: const CircleAvatar(
-                                                radius: 14.0,
-                                                backgroundColor: Colors.black,
-                                                child: Text('-'),
-                                              ),
+                              child: Card(
+                                elevation: 5,
+                                color: Colors.white,
+                                child: ListTile(
+                                  leading: CircleAvatar(
+                                    backgroundColor: Colors.white,
+                                    backgroundImage: NetworkImage(
+                                        cartModel.productImages[0]),
+                                  ),
+                                  title: Text(cartModel.productName),
+                                  subtitle: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                          "Price : ${cartModel.productTotalPrice.toString()}"),
+                                      Row(
+                                        children: [
+                                          GestureDetector(
+                                            onTap: () async {
+                                              if (cartModel.productQuantity >
+                                                  1) {
+                                                await FirebaseFirestore.instance
+                                                    .collection('cart')
+                                                    .doc(user!.uid)
+                                                    .collection('cartOrders')
+                                                    .doc(cartModel.productId)
+                                                    .update({
+                                                  'productQuantity': cartModel
+                                                          .productQuantity -
+                                                      1,
+                                                  'productTotalPrice': (double
+                                                          .parse(cartModel
+                                                              .fullPrice) *
+                                                      (cartModel
+                                                              .productQuantity -
+                                                          1))
+                                                });
+                                              }
+                                            },
+                                            child: const CircleAvatar(
+                                              radius: 14.0,
+                                              backgroundColor: Colors.black,
+                                              child: Text('-'),
                                             ),
-                                            SizedBox(
-                                              width: Get.width / 20.0,
+                                          ),
+                                          SizedBox(
+                                            width: Get.width / 20.0,
+                                          ),
+                                          GestureDetector(
+                                            onTap: () async {
+                                              if (cartModel.productQuantity >
+                                                  0) {
+                                                await FirebaseFirestore.instance
+                                                    .collection('cart')
+                                                    .doc(user!.uid)
+                                                    .collection('cartOrders')
+                                                    .doc(cartModel.productId)
+                                                    .update({
+                                                  'productQuantity': cartModel
+                                                          .productQuantity +
+                                                      1,
+                                                  'productTotalPrice': double
+                                                          .parse(cartModel
+                                                              .fullPrice) +
+                                                      double.parse(cartModel
+                                                              .fullPrice) *
+                                                          (cartModel
+                                                              .productQuantity)
+                                                });
+                                              }
+                                            },
+                                            child: const CircleAvatar(
+                                              radius: 14.0,
+                                              backgroundColor: Colors.red,
+                                              child: Text('+'),
                                             ),
-                                            GestureDetector(
-                                              onTap: () async {
-                                                if (cartModel.productQuantity >
-                                                    0) {
-                                                  await FirebaseFirestore
-                                                      .instance
-                                                      .collection('cart')
-                                                      .doc(user!.uid)
-                                                      .collection('cartOrders')
-                                                      .doc(cartModel.productId)
-                                                      .update({
-                                                    'productQuantity': cartModel
-                                                            .productQuantity +
-                                                        1,
-                                                    'productTotalPrice': double
-                                                            .parse(cartModel
-                                                                .fullPrice) +
-                                                        double.parse(cartModel
-                                                                .fullPrice) *
-                                                            (cartModel
-                                                                .productQuantity)
-                                                  });
-                                                }
-                                              },
-                                              child: const CircleAvatar(
-                                                radius: 14.0,
-                                                backgroundColor: Colors.red,
-                                                child: Text('+'),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Text(
-                                            "Quantity : ${cartModel.productQuantity}")
-                                      ],
-                                    ),
+                                          ),
+                                        ],
+                                      ),
+                                      Text(
+                                          "Quantity : ${cartModel.productQuantity}")
+                                    ],
                                   ),
                                 ),
                               ),

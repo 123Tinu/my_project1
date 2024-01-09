@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:my_project/screens/front_page.dart';
 import '../model/user-model.dart';
+import '../view/auth_ui/splash_screen.dart';
 import 'get-device-token-controller.dart';
 
 class EmailPassController extends GetxController {
@@ -101,7 +101,7 @@ class EmailPassController extends GetxController {
         "Password reset link sent to $userEmail",
         snackPosition: SnackPosition.TOP,
       );
-      Get.off(const FrontPage(), transition: Transition.leftToRightWithFade);
+      Get.off(const SplashScreen(), transition: Transition.leftToRightWithFade);
     } on FirebaseAuthException catch (e) {
       Get.snackbar(
         "Error",

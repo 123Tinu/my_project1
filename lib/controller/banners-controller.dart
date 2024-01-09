@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class BannerController extends GetxController {
@@ -22,7 +23,9 @@ class BannerController extends GetxController {
             .toList();
       }
     } catch (e) {
-      print("error: $e");
+      if (kDebugMode) {
+        print("error: $e");
+      }
     }
   }
 }

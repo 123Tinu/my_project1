@@ -1,16 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-
 import '../model/cart-model.dart';
 import '../model/product-model.dart';
 
 class CartItemController extends GetxController {
-  Future<void> checkProductExistence(
-      {required String uId,
-      int quantityIncrement = 1,
-      required ProductModel productModel}) async {
+  Future<void> checkProductExistence({
+    required String uId,
+    int quantityIncrement = 1,
+    required ProductModel productModel,
+  }) async {
     final DocumentReference documentReference = FirebaseFirestore.instance
         .collection('cart')
         .doc(uId)
@@ -22,17 +20,27 @@ class CartItemController extends GetxController {
     if (snapshot.exists) {
       int currentQuantity = snapshot['productQuantity'];
       int updatedQuantity = currentQuantity + quantityIncrement;
-      double totalPrice = double.parse(productModel.isSale
-              ? productModel.salePrice
-              : productModel.fullPrice) *
-          updatedQuantity;
 
-      await documentReference.update({
-        'productQuantity': updatedQuantity,
-        'productTotalPrice': totalPrice
-      });
-      Get.snackbar("product exists", "update quantity");
-      print("product exists");
+      try {
+        double totalPrice = double.tryParse(
+              productModel.isSale
+                  ? productModel.salePrice.replaceAll(',', '')
+                  : productModel.fullPrice.replaceAll(',', ''),
+            ) ??
+            0.0;
+
+        totalPrice *= updatedQuantity;
+
+        await documentReference.update({
+          'productQuantity': updatedQuantity,
+          'productTotalPrice': totalPrice,
+        });
+
+        Get.snackbar("Product exists", "Update quantity");
+        print("Product exists");
+      } catch (e) {
+        print("Error updating quantity: $e");
+      }
     } else {
       await FirebaseFirestore.instance.collection('cart').doc(uId).set(
         {
@@ -55,15 +63,16 @@ class CartItemController extends GetxController {
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
         productQuantity: 1,
-        productTotalPrice: double.parse(productModel.isSale
-            ? productModel.salePrice
-            : productModel.fullPrice),
+        productTotalPrice: double.parse(
+          productModel.isSale
+              ? productModel.salePrice.replaceAll(',', '')
+              : productModel.fullPrice.replaceAll(',', ''),
+        ),
       );
 
       await documentReference.set(cartModel.toMap());
 
-      print("product added");
-      Get.snackbar("Success", "product added");
+      Get.snackbar("Success", "Product added");
     }
   }
 }
